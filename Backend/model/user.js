@@ -18,7 +18,6 @@ const UserSchema = new Mongoose.Schema({
   role: {
     type: String,
     default: "Student",
-    required: true,
     min: 3,
     max: 255,
   },

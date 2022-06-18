@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Gurukul</string>
+    <string name="back_button">back button</string>
+    <string name="app_logo">app logo</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email_icon">Email Icon</string>
+    <string name="email">email</string>
+    <string name="name_icon">name icon</string>
+    <string name="name">name</string>
+    <string name="school_icon">school icon</string>
+    <string name="lock_icon">lock icon</string>
+    <string name="password">password</string>
+    <string name="continue_">Continue</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="graduation_year">Graduation year:</string>
+    <string name="branch">Branch:</string>
+    <string name="log_in">Log In</string>
+    <string name="log_in_as_guest">Log In As Guest</string>
+    <string name="or">OR</string>
+</resources>

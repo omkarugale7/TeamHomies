@@ -7,17 +7,19 @@ const jwt = require('jsonwebtoken');
 const { findById } = require("./../model/user");
 
 exports.register = async (req, res, next) => {
-  const { username, password, role, email, branch, prn, graduation_year } = req.body;
-  const checkUser = User.findOne({email: email});
-  if(checkUser) {
-      return res.status(400).json({ message: "Email Already Exists !!!"});
-  }
+  const { username, name, password, role, email, branch, prn, graduation_year } = await req.body;
+  // const checkUser = User.findOne({email: email});
+  // console.log(checkUser);
+  // if(checkUser) {
+  //     return res.status(400).json({ message: "Email Already Exists !!!"});
+  // }
   if (password.length < 8) {
     return res.status(400).json({ message: "Password less than 8 characters" })
   }
-  bcrypt.hash(password, 10).then(async (hash) => {
+  await bcrypt.hash(password, 10).then(async (hash) => {
     await User.create({
       username,
+      name,
       password: hash,
       role,
       email,
@@ -40,7 +42,7 @@ exports.register = async (req, res, next) => {
         });
         try {
           const message = `${process.env.BASE_URL}/verify/${token}`;
-          sendEmail(user.email, "Verify Email", message);
+          sendEmail(user.email, "Verify Email !!!", message);
 
         } catch (error) {
           res.status(400).send("Email ID Not Found !!!");

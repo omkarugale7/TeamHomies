@@ -3,6 +3,7 @@ const connectDB = require("./db");
 var fs = require('fs');
 const path = require('path');
 var bodyParser = require('body-parser');
+const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const { adminAuth, userAuth } = require("./middleware/Auth.js");
 require("dotenv").config();
