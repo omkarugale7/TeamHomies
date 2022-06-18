@@ -1,5 +1,6 @@
 import React from 'react';
 import './LoginAdmin.css';
+import { Link } from 'react-router-dom';
 import Gurukul from '../Images/gurukul.png'; 
 import College from '../Images/College.jpg';
 function LoginAdmin() {
@@ -37,7 +38,7 @@ function LoginAdmin() {
       />
     
 </div>
-<a className='forgot_link' href=""> <p className='forgot'>Forgot Password?</p></a>
+<Link className='forgot_link' to="/forgotPassword"> <p className='forgot'>Forgot Password?</p></Link>
   <div className='login_btn'>
 <button type="submit" className="btn btn-primary btn-lg submit_btn">Log in</button>
 </div>

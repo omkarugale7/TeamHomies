@@ -37,7 +37,6 @@ function SuperAdminLogin() {
       />
     
 </div>
-<a className='forgot_link' href=""> <p className='forgot'>Forgot Password?</p></a>
   <div className='login_btn'>
 <button type="submit" className="btn btn-primary btn-lg submit_btn">Log in</button>
 </div>
