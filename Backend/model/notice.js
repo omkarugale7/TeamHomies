@@ -1,14 +1,18 @@
-var mongoose = require('mongoose');
+const Mongoose = require('mongoose');
   
-var noticeSchema = new mongoose.Schema({
-    title: String,
+const noticeSchema = new Mongoose.Schema({
+    title: { 
+        type: String,
+        required: true
+    },
     desc: String,
-    img:
-    {
-        data: Buffer,
-        contentType: String
+    img: {
+        type: String,
+        required: true
     }
 });
 
-  
-module.exports = new mongoose.model('Notice', noticeSchema);
+
+const Notice = Mongoose.model('Notice', noticeSchema);
+
+module.exports = Notice;
