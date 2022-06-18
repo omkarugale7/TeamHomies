@@ -8,6 +8,10 @@ const { findById } = require("./../model/user");
 
 exports.register = async (req, res, next) => {
   const { username, password, role, email, branch, prn, graduation_year } = req.body;
+  const checkUser = User.findOne({email: email});
+  if(checkUser) {
+      return res.status(400).json({ message: "Email Already Exists !!!"});
+  }
   if (password.length < 8) {
     return res.status(400).json({ message: "Password less than 8 characters" })
   }
@@ -124,7 +128,7 @@ exports.verify = async (req,res) => {
   try {
     const { id } = jwt.verify(req.params.token, process.env.jwtSecret);
 
-    await User.findOneAndUpdate(id,{$set: {verified: true}});
+    await User.findByIdAndUpdate(id,{verified: true});
     
   } catch (e) {
     res.status(400).json({e : e.message});
