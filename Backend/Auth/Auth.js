@@ -8,6 +8,10 @@ const { findById } = require("./../model/user");
 
 exports.register = async (req, res, next) => {
   const { username, password, role, email, branch, prn, graduation_year } = req.body;
+  const checkUser = User.findOne({email: email});
+  if(checkUser) {
+      return res.status(400).json({ message: "Email Already Exists !!!"});
+  }
   if (password.length < 8) {
     return res.status(400).json({ message: "Password less than 8 characters" })
   }
