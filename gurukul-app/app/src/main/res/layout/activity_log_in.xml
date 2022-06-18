@@ -91,13 +91,24 @@
 
     </LinearLayout>
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot_password"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/text_color_primary"
+        android:gravity="end"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="32dp"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_log_in"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         app:cornerRadius="10dp"
         android:backgroundTint="@color/blue"
         android:text="Log In"

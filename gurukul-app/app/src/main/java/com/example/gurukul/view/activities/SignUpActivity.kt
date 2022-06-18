@@ -3,6 +3,7 @@ package com.example.gurukul.view.activities
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.android.volley.Request
@@ -45,8 +46,10 @@ class SignUpActivity : BaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                Toast.makeText(applicationContext, branchesArray[position], Toast.LENGTH_LONG).show()
-                (parent?.getChildAt(0) as TextView).setTextColor(Color.parseColor("#758196"))
+                //Toast.makeText(applicationContext, branchesArray[position], Toast.LENGTH_LONG).show()
+
+                if (parent?.getChildAt(0) != null)
+                (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#758196"))
                 branch = branchesArray[position]
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -61,8 +64,9 @@ class SignUpActivity : BaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                Toast.makeText(applicationContext, graduationYearArr[position], Toast.LENGTH_LONG).show()
-                (parent?.getChildAt(0) as TextView).setTextColor(Color.parseColor("#758196"))
+                //Toast.makeText(applicationContext, graduationYearArr[position], Toast.LENGTH_LONG).show()
+                if (parent?.getChildAt(0) != null)
+                (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#758196"))
                 graduationYear = graduationYearArr[position].toInt()
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -109,6 +113,7 @@ class SignUpActivity : BaseActivity() {
             return false
         } else if (password.length < 8){
             showSnackBar("Please enter a password of at least 8 characters", true)
+            return false
         }
 
         return true
@@ -120,6 +125,9 @@ class SignUpActivity : BaseActivity() {
 
         if (validateDetails())
         {
+
+            showProgressDialog("Please wait...")
+
             val registerUrl = "https://wcegurukul.herokuapp.com/register"
 
             val email = _binding.etEmail.text.toString().trim().lowercase()
@@ -142,12 +150,27 @@ class SignUpActivity : BaseActivity() {
 
             val stringBodyObject = jsonBodyObject.toString()
 
-            val sr : StringRequest = object : StringRequest(Method.POST, registerUrl, {
-                        Toast.makeText(this, "Success", Toast.LENGTH_LONG).show()
-            }, {
-                    //Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-            }) {
+            val sr : StringRequest = object : StringRequest(Method.POST, registerUrl,
+                {
+                    hideProgressDialog()
+                    val jsonObject = JSONObject(it)
 
+                    showSnackBar(jsonObject.getString("message"), false)
+                    Log.e("Success", it)
+                    Intent(this, VerifyEmailActivity::class.java).also {
+                        startActivity(it)
+                    }
+                },
+                {
+                    hideProgressDialog()
+                    //it.localizedMessage?.let { it1 -> showSnackBar(it1, true) }
+
+                    //val jsonObject = JSONObject(resp)
+
+
+
+                }
+            ){
                 override fun getHeaders(): MutableMap<String, String> {
                     val headers = HashMap<String, String>()
                     headers["Content-Type"] =  "application/json"

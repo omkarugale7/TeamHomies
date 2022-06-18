@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gurukul">
         <activity
+            android:name=".view.activities.HomeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_home" />
+        <activity
             android:name=".view.activities.VerifyEmailActivity"
             android:exported="false" />
         <activity

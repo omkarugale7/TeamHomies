@@ -15,8 +15,8 @@
 
     <ImageButton
         android:id="@+id/btn_back_arrow"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_margin="8dp"
         android:src="@drawable/ic_vector_back_arrow"
         android:background="@color/bone_white"

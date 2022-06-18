@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_home.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_log_in.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_sign_up.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_verify_email.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/dialog_wait.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/abhij/AndroidStudioProjects/JetpackCompose/Gurukul/app/src/main/res/font/montserrat.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/abhij/AndroidStudioProjects/JetpackCompose/Gurukul/app/src/main/res/layout/activity_log_in.xml" value="0.2328125" />
         <entry key="..\:/Users/abhij/AndroidStudioProjects/JetpackCompose/Gurukul/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
