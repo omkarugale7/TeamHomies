@@ -45,7 +45,7 @@
     width: 100%;
 }
 .login_input{
-    padding-bottom: 7%;
+    padding-bottom: 5%;
 }
 .forgot{
     text-align: end;
@@ -100,6 +100,9 @@
     max-height: 100%;
     object-fit:cover;
     border-radius: 0px 15px 15px 0px;
+}
+.error_login{
+    color: red;
 }
 @media(max-width:1000px){
     .box_login{
