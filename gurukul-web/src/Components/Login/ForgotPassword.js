@@ -13,6 +13,7 @@ function ForgotPassword() {
     },
     validationSchema: Yup.object({
       email: Yup.string().email()
+      .matches("^[a-zA-Z0-9+_.-]+@[w]$" ,"Invalid type email")
       .required('email is required*'),  
     }),
     onSubmit: (values) => {

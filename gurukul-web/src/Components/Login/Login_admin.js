@@ -1,13 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react'
 import './LoginAdmin.css';
 import { Link } from 'react-router-dom';
 import Gurukul from '../Images/gurukul.png'; 
 import College from '../Images/College.jpg';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import axios from "axios";
 
 function LoginAdmin() {
-
+  const [alertCode, setAlertCode] = useState(0)
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -23,9 +24,56 @@ function LoginAdmin() {
     }),
     onSubmit: (values) => {
       console.log(values);
+      LoginHandler(values);
     }
   });
-  console.log(formik.errors);
+
+  const LoginHandler=(values)=>{
+    const URL = 'https://wcegurukul.herokuapp.com/adminLogin';
+    axios
+    .post(
+      URL,
+      {
+        username: values.username,
+        password: values.password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((response)=>{
+      if (response.status === 201){
+        const data = response.data;
+        console.log(response.status);
+        alert("Successfully Logged In");
+        window.location='/resetPassword';
+      }
+    })
+    .catch((err) => {
+      if(err.message==="Request failed with status code 400")
+          {
+            setAlertCode(1);
+            alert("Bad Request");
+            return 0;
+          }
+        if (err.message==="Request failed with status code 404") {
+          setAlertCode(2);
+          alert("You have entered an invalid username or password");
+            return 0;
+        }
+        if (err.message==="Request failed with status code 401") {
+          setAlertCode(3);
+            return 0;
+        }
+      setAlertCode(4);
+      return 0;
+    });
+    values.username='';
+    values.password='';
+  }
+  console.log(alertCode);
   return (
     <div className='background'>
   <div className='container-fluid box_login'>
