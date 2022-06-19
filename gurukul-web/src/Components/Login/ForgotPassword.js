@@ -1,11 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Gurukul from '../Images/gurukul.png'; 
 import College from '../Images/College.jpg';
 import './LoginAdmin.css';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-function ForgotPassword() {
+import axios from "axios";
 
+function ForgotPassword() {
+  const [alertCode, setAlertCode] = useState(0);
   const formik = useFormik({
     initialValues: {
       email:'',
@@ -13,13 +15,66 @@ function ForgotPassword() {
     },
     validationSchema: Yup.object({
       email: Yup.string().email()
-      .matches("^[a-zA-Z0-9+_.-]+@[w]$" ,"Invalid type email")
-      .required('email is required*'),  
+      .matches('[a-z0-9]+@[a-z]+\.[a-z]{2,3}' ,"Invalid  email type")
+      .required('email required*'),  
     }),
     onSubmit: (values) => {
       console.log(values);
+      Emailverify(values);
+      LoginHandler(values);
     }
   });
+
+  const Emailverify=(values)=>{
+    if(!values.email.endsWith("@walchandsangli.ac.in")){
+      alert("Invalid Email Type");
+    }
+
+  }
+
+  const LoginHandler=(values)=>{
+    const URL = 'https://wcegurukul.herokuapp.com/adminLogin';
+    axios
+    .post(
+      URL,
+      {
+        email: values.email,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .then((response)=>{
+      if (response.status === 201){
+        const data = response.data;
+        console.log(response.status);
+        alert("Check Your Email");
+        window.location='/login';
+      }
+    })
+    .catch((err) => {
+      if(err.message==="Request failed with status code 400")
+          {
+            setAlertCode(1);
+            alert("Bad Request");
+            return 0;
+          }
+        if (err.message==="Request failed with status code 404") {
+          setAlertCode(2);
+          alert("You have entered an invalid username or password");
+            return 0;
+        }
+        if (err.message==="Request failed with status code 401") {
+          setAlertCode(3);
+            return 0;
+        }
+      setAlertCode(4);
+      return 0;
+    });
+    values.email='';
+  }
 
   return (
     <div className='background'>
