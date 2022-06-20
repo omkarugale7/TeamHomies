@@ -1,5 +1,5 @@
 .background{
-    background-color: rgb(137, 162, 162);
+    background-color: #47B5FF;
     margin: 0%;
     min-height: 100vh;
     min-width: 100vw;
@@ -45,7 +45,7 @@
     width: 100%;
 }
 .login_input{
-    padding-bottom: 7%;
+    padding-bottom: 5%;
 }
 .forgot{
     text-align: end;
@@ -64,7 +64,19 @@
     outline: none;
     transition: .3s;
 }
+.input_box_f{
+    border-radius: 5px;
+    border: 2px solid #aaa;
+    padding: 7px;
+    outline: none;
+    transition: .3s;
+    width: 100%;
+}
 .input_box:focus{
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
+.input_box_f:focus{
     border-color: dodgerBlue;
     box-shadow: 0 0 8px 0 dodgerBlue;
 }
@@ -88,6 +100,9 @@
     max-height: 100%;
     object-fit:cover;
     border-radius: 0px 15px 15px 0px;
+}
+.error_login{
+    color: red;
 }
 @media(max-width:1000px){
     .box_login{
