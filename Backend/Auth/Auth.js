@@ -4,10 +4,12 @@ const sendEmail = require("./../utils/email");
 
 
 const jwt = require('jsonwebtoken');
+const util = require('util');
+const jwtVerifyAsync = util.promisify(jwt.verify);
 const { findById } = require("./../model/user");
 
 exports.register = async (req, res, next) => {
-  const { username, name, password, role, email, branch, prn, graduation_year } = await req.body;
+  const { username, name, password, role, email, phone, branch, prn, graduation_year } = await req.body;
   // const checkUser = User.findOne({email: email});
   // console.log(checkUser);
   // if(checkUser) {
@@ -23,6 +25,7 @@ exports.register = async (req, res, next) => {
       password: hash,
       role,
       email,
+      phone,
       branch,
       prn,
       graduation_year
@@ -44,8 +47,8 @@ exports.register = async (req, res, next) => {
           const message = `${process.env.BASE_URL}/verify/${token}`;
           sendEmail(user.email, "Verify Email !!!", message);
 
-        } catch (error) {
-          res.status(400).send("Email ID Not Found !!!");
+        } catch (err) {
+          res.status(400).json({message: "Invalid Email Address !!!"});
         }
         res.status(201).json({
           message: "User Successfully Created",
@@ -54,7 +57,7 @@ exports.register = async (req, res, next) => {
       })
       .catch((error) =>
         res.status(400).json({
-          message: "User not successful created",
+          message: "User Not Successfully created",
           error: error.message,
         })
       );
@@ -72,7 +75,7 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({ username })
     if (!user) {
       res.status(400).json({
-        message: "Login not successful",
+        message: "User not found",
         error: "User not found",
       })
     } else if(!user.verified) {
@@ -98,9 +101,10 @@ exports.login = async (req, res, next) => {
           res.status(201).json({
             message: "User successfully Logged in",
             user: user._id,
+            token: token
           });
         } else {
-          res.status(400).json({ message: "Login not succesful" });
+          res.status(400).json({ message: "Invalid Password !!!" });
         }
       });
     }
@@ -133,8 +137,20 @@ exports.verify = async (req,res) => {
     await User.findByIdAndUpdate(id,{verified: true});
     
   } catch (e) {
-    res.status(400).json({e : e.message});
+    res.status(400).json({message : "Invalid Token or Token Expired !!!"});
   }
   res.status(201).json({message : "Correct !!!", User});
   
 }
+
+// exports.tokenVerify = async (req,res) => {
+
+//   const {token} = req.body;
+//   console.log(token);
+//   try {
+//     req.auth = await jwtVerifyAsync(token, req.app.get('your-secret'))
+//   } catch (err) {
+//     res.status(400).json({message: "Session Expired !! Please Login Again"});
+//   }
+//   res.status(201).json({message: "Login Success !!!"});
+// }

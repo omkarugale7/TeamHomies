@@ -25,6 +25,10 @@ const AdminSchema = new Mongoose.Schema({
         type: String,
         required: true,
       },
+      phone : {
+        type: Number,
+        required: true,
+      },
       joining_year : {
         type: Number,
         required: true,

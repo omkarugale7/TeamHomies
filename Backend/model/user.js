@@ -25,6 +25,10 @@ const UserSchema = new Mongoose.Schema({
     type: String,
     required: true,
   },
+  phone : {
+    type: Number,
+    required: true,
+  },
   verified: {
     type: Boolean,
     default: false,
@@ -40,6 +44,10 @@ const UserSchema = new Mongoose.Schema({
   branch : {
     type: String,
     required: true
+  },
+  semester : {
+    type: Number,
+    default: 4
   }
 })
 

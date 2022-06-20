@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { findById } = require("./../model/admin");
 
 exports.adminRegister = async (req, res) => {
-  const { username, password, name, role, email, joining_year } = await req.body;
+  const { username, password, name, role, email, phone, joining_year } = await req.body;
   if (password.length < 8) {
     return res.status(400).json({ message: "Password less than 8 characters" });
   }
@@ -16,6 +16,7 @@ exports.adminRegister = async (req, res) => {
       password: hash,
       role,
       email,
+      phone,
       joining_year,
     })
       .then((admin) => {
@@ -41,7 +42,61 @@ exports.adminRegister = async (req, res) => {
   });
 };
 
-exports.adminLogin = async (req, res, next) => {
+exports.superAdminLogin = async (req, res, next) => {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.status(400).json({
+        message: "Username or Password Not Present",
+      })
+    }
+    try {
+        console.log(username);
+      const admin = await Admin.findOne({ "username" : username });
+      console.log(admin);
+      if (!admin) {
+        res.status(400).json({
+          error: "Login not successful",
+          message: "Super Admin Not Found",
+        })
+      } else if(admin.role !== 'super-admin') {
+        res.status(400).json({
+          error: "Login Not Successful",
+          message: "Super Admin Authorisation Not Available",
+        })
+      } else {
+        bcrypt.compare(password, admin.password).then(function (result) {
+          if (result) {
+            const maxAge = 3 * 60 * 60;
+            const token = jwt.sign(
+              { id: admin._id },
+              process.env.jwtSecret,
+              {
+                expiresIn: maxAge,
+              }
+            );
+            res.cookie("jwt", token, {
+              httpOnly: true,
+              maxAge: maxAge * 1000,
+            });
+            res.status(201).json({
+              message: "Super Admin successfully Logged in",
+              admin: admin._id,
+              token: token
+            });
+          } else {
+            res.status(400).json({ message: "Wrong Password !!!" });
+          }
+        });
+      }
+    } catch (error) {
+      res.status(400).json({
+        message: "An error occurred",
+        error: error.message,
+      });
+    }
+  }
+
+  exports.adminLogin = async (req, res, next) => {
     const { username, password } = req.body;
     if (!username || !password) {
       return res.status(400).json({
@@ -75,6 +130,7 @@ exports.adminLogin = async (req, res, next) => {
             res.status(201).json({
               message: "Admin successfully Logged in",
               admin: admin._id,
+              token: token
             });
           } else {
             res.status(400).json({ message: "Wrong Password !!!" });
