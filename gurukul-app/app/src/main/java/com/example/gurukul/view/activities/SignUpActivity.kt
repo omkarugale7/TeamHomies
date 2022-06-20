@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import com.android.volley.NetworkResponse
 import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -85,7 +88,12 @@ class SignUpActivity : BaseActivity() {
         _binding.tvGoToLogIn.setOnClickListener {
             Intent(this, LogInActivity::class.java).also {
                 startActivity(it)
+                this.finish()
             }
+        }
+
+        _binding.btnBackArrow.setOnClickListener{
+            onBackPressed()
         }
 
     }
@@ -135,18 +143,21 @@ class SignUpActivity : BaseActivity() {
             val prn = _binding.etPrn.text.toString().trim().lowercase()
             val password = _binding.etPassword.text.toString().trim()
 
-
             //Toast.makeText(this, branch + "  " + graduationYear, Toast.LENGTH_LONG).show()
 
             val jsonBodyObject = JSONObject()
 
-            jsonBodyObject.put("email", email)
-            jsonBodyObject.put("name", name)
-            jsonBodyObject.put("prn", prn)
-            jsonBodyObject.put("username", prn)
-            jsonBodyObject.put("branch", branch)
-            jsonBodyObject.put("graduation_year", graduationYear)
-            jsonBodyObject.put("password", password)
+            try {
+                jsonBodyObject.put("email", email)
+                jsonBodyObject.put("name", name)
+                jsonBodyObject.put("prn", prn)
+                jsonBodyObject.put("username", prn)
+                jsonBodyObject.put("branch", branch)
+                jsonBodyObject.put("graduation_year", graduationYear)
+                jsonBodyObject.put("password", password)
+            } catch (exception : Exception) {
+                exception.printStackTrace()
+            }
 
             val stringBodyObject = jsonBodyObject.toString()
 
@@ -158,16 +169,22 @@ class SignUpActivity : BaseActivity() {
                     showSnackBar(jsonObject.getString("message"), false)
                     Log.e("Success", it)
                     Intent(this, VerifyEmailActivity::class.java).also {
+                        it.putExtra("title", "Your account has been successfully created")
+                        it.putExtra("desc", "Please verify you Email Address using the link sent on email")
                         startActivity(it)
+                        this.finish()
                     }
                 },
                 {
                     hideProgressDialog()
-                    //it.localizedMessage?.let { it1 -> showSnackBar(it1, true) }
 
-                    //val jsonObject = JSONObject(resp)
+                    val resp = it.networkResponse
+                    val err = String(resp.data)
+                    val respJO = JSONObject(err)
 
+                    showSnackBar(respJO.getString("message"), true)
 
+                    Log.d("Network Response", err)
 
                 }
             ){
@@ -180,6 +197,7 @@ class SignUpActivity : BaseActivity() {
                 override fun getBody(): ByteArray {
                     return stringBodyObject.toByteArray()
                 }
+
             }
 
             val requestQueue = Volley.newRequestQueue(this)
@@ -189,44 +207,5 @@ class SignUpActivity : BaseActivity() {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-//override fun getHeaders(): Map<String, String> {
-//    val params: MutableMap<String, String> = HashMap()
-//    val email = _binding.etEmail.text.toString().trim().lowercase()
-//    val name = _binding.etName.text.toString().trim()
-//    val prn = _binding.etPrn.text.toString().trim().lowercase()
-//    val password = _binding.etPassword.text.toString().trim()
-//
-//    Log.e("PASSWORD", password)
-//
-////                    Toast.makeText(applicationContext, email + " "
-////                            + prn +  " " + name+ " " + branch + " " + graduationYear + password,
-////                        Toast.LENGTH_LONG).show()
-//
-//    params["username"] = prn
-//    params["prn"] = prn
-//    params["email"] = email
-//    params["name"] = name
-//    params["password"] = password
-//    params["branch"] = branch
-//    params["graduation_year"] = graduationYear.toString()
-//    return params
-
-
-
-
-
-
-
 
 }

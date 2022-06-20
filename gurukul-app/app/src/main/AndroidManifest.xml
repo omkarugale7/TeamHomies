@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gurukul">
         <activity
+            android:name=".view.activities.ForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home" />
@@ -20,18 +23,22 @@
             android:exported="false" />
         <activity
             android:name=".view.activities.LogInActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.BaseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.SignUpActivity"
-            android:exported="true">
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".view.activities.BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.SignUpActivity"
+            android:exported="false">
+
         </activity>
         <activity
             android:name=".view.activities.MainActivity"

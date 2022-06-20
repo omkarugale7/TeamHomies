@@ -1,6 +1,6 @@
 package com.example.gurukul.view.activities
-
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.gurukul.R
 import com.example.gurukul.databinding.ActivityLogInBinding
+import com.example.gurukul.utils.Constants
 import org.json.JSONObject
 import java.lang.Error
 import java.util.HashMap
@@ -38,7 +39,88 @@ class LogInActivity : BaseActivity() {
             logIn()
         }
 
+        _binding.btnLoginAsGuest.setOnClickListener {
+            Intent(this, HomeActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        _binding.tvForgotPassword.setOnClickListener {
+            Intent(this, ForgotPassword::class.java).also {
+                startActivity(it)
+            }
+        }
+
     }
+
+    override fun onResume() {
+
+        val pref  = this.getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
+
+        //showProgressDialog("Please Wait...")
+
+        val username = pref.getString(Constants.LOGGED_IN_USERNAME, "")
+        val password = pref.getString(Constants.LOGGED_IN_PASSWORD, "")
+
+        super.onResume()
+//        if (!username.isNullOrEmpty() && !password.isNullOrEmpty()){
+//            Intent(this, HomeActivity::class.java).also {it1 ->
+//                startActivity(it1)
+//                this.finish()
+//                return
+//            }
+//        }
+
+        val verifyTokenURL = "https://wcegurukul.herokuapp.com/login"
+
+        val jsonBodyObject = JSONObject()
+        jsonBodyObject.put(Constants.LOGGED_IN_USERNAME, username)
+        jsonBodyObject.put(Constants.LOGGED_IN_PASSWORD, password)
+
+        val stringBodyObject = jsonBodyObject.toString()
+
+        val sr : StringRequest = object : StringRequest(
+            Method.POST, verifyTokenURL,
+            {
+                hideProgressDialog()
+
+                //Log.d("TAG", it)
+
+                Intent(this, HomeActivity::class.java).also {it1 ->
+                    startActivity(it1)
+                    this.finish()
+                }
+
+            },
+            {
+                hideProgressDialog()
+                val resp = it.networkResponse
+                if (resp == null) {
+                    showSnackBar("Check your Internet Connection!", true)
+                } else {
+                    val err = String(resp.data)
+                    Log.d("Network Response", err)
+                    val respJO: JSONObject = JSONObject(err)
+                    showSnackBar(respJO.getString("message"), true)
+                }
+            }
+        ){
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Content-Type"] =  "application/json"
+                return headers
+            }
+
+            override fun getBody(): ByteArray {
+                return stringBodyObject.toByteArray()
+            }
+        }
+
+        val requestQueue = Volley.newRequestQueue(this)
+        //requestQueue.add(sr)
+
+    }
+
 
     private fun validateDetails() : Boolean{
         if (_binding.etPrn.text.trim().isEmpty()) {
@@ -74,19 +156,38 @@ class LogInActivity : BaseActivity() {
                 Method.POST, registerUrl,
                 {
                     hideProgressDialog()
+
                     val jsonObject = JSONObject(it)
 
                     Log.e("TAG", it)
 
-//                    if (jsonObject.getBoolean("verified")){
-//                        showSnackBar("Successfully Logged In", false)
-//                    } else{
-//                        showSnackBar("Please verify your email address", true)
-//                    }
+                    val pref = this.getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
+
+                    val editor = pref.edit()
+                    editor.putString(Constants.LOGGED_IN_USERNAME, prn)
+                    editor.putString(Constants.LOGGED_IN_PASSWORD, password)
+
+                    editor.apply()
+
+                    Intent(this, HomeActivity::class.java).also { it1 ->
+                        startActivity(it1)
+                        this.finish()
+                    }
+
                 },
                 {
                     hideProgressDialog()
-                    showSnackBar(it.toString(), true)
+
+                    val resp = it.networkResponse
+
+                    if (resp == null){
+                        showSnackBar("Check your Internet Connection", true)
+                    } else {
+                        val err = String(resp.data)
+                        Log.d("Network Response", err)
+                        val respJO: JSONObject = JSONObject(err)
+                        showSnackBar(respJO.getString("message"), true)
+                    }
                 }
             ){
                 override fun getHeaders(): MutableMap<String, String> {
@@ -103,10 +204,7 @@ class LogInActivity : BaseActivity() {
             val requestQueue = Volley.newRequestQueue(this)
             requestQueue.add(sr)
 
-
         }
-
-
     }
 
 }

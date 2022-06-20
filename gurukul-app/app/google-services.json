@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "800622281298",
+    "project_id": "wce-gurukul",
+    "storage_bucket": "wce-gurukul.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800622281298:android:0e63edbe8fc90f3966958b",
+        "android_client_info": {
+          "package_name": "com.example.gurukul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800622281298-jj4pff9gp3sld2jiek251jinc2fttu4m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gurukul",
+            "certificate_hash": "0951f2e5431df86c41675521cdeca854272568a4"
+          }
+        },
+        {
+          "client_id": "800622281298-rcd2vm6r5eojp4cr11eh2ncp503v7d9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMGpBhEIkZSdxuAfAGKnxgBWfYwltfiQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800622281298-rcd2vm6r5eojp4cr11eh2ncp503v7d9q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

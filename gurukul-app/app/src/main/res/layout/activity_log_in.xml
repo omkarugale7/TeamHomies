@@ -13,7 +13,7 @@
         android:id="@+id/iv_app_logo"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-60dp"
         android:src="@drawable/gurukul_logo"
         android:contentDescription="@string/app_logo" />
 
@@ -23,8 +23,8 @@
         android:text="@string/log_in"
         android:textSize="24sp"
         android:textColor="@color/text_color_primary"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="-64dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="-84dp"
         android:fontFamily="@font/montserrat_bold"
         />
 
@@ -47,9 +47,12 @@
             android:id="@+id/et_prn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24sp"
+            android:layout_marginStart="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:inputType="text"
             tools:text="2020BTECS00082"
+            android:textSize="16sp"
             android:hint="prn"
             android:textColorHint="@color/text_color_secondary"
             android:textColor="@color/text_color_primary"
@@ -64,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -79,7 +82,10 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24sp"
+            android:layout_marginStart="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textSize="16sp"
             tools:text="Password"
             android:hint="@string/password"
             android:textColorHint="@color/text_color_secondary"
@@ -93,22 +99,26 @@
 
 
     <TextView
+        android:id="@+id/tv_forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
+        android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
         android:textColor="@color/text_color_primary"
+        android:textSize="16sp"
         android:gravity="end"
         android:layout_marginEnd="24dp"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="8dp"
+        android:focusable="true" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_log_in"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="32dp"
         app:cornerRadius="10dp"
         android:backgroundTint="@color/blue"
         android:text="Log In"
@@ -120,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal">
 
         <TextView
@@ -128,7 +138,7 @@
             android:layout_height="wrap_content"
             android:text="New User?"
             android:textColor="@color/text_color_secondary"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:fontFamily="@font/montserrat_bold"/>
 
         <TextView
@@ -147,7 +157,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="12dp"
         android:orientation="horizontal">
@@ -166,7 +176,7 @@
             android:gravity="center"
             android:text="@string/or"
             android:textColor="@color/text_color_secondary"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:fontFamily="@font/montserrat_bold"/>
 
         <View
@@ -184,15 +194,15 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login_as_guest"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="24dp"
         app:cornerRadius="10dp"
         android:backgroundTint="@color/blue"
         android:text="@string/log_in_as_guest"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:textSize="16sp"/>
+        android:textSize="20sp"/>
 
 </LinearLayout>

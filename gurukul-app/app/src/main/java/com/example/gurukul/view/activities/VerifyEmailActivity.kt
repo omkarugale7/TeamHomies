@@ -10,10 +10,20 @@ class VerifyEmailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val _binding = ActivityVerifyEmailBinding.inflate(layoutInflater)
+
+        val intent = intent
+
+        val title = intent.getStringExtra("title")
+        val desc = intent.getStringExtra("desc")
+
+        _binding.tvDesc.text = desc
+        _binding.tvTitle.text = title
+
         setContentView(_binding.root)
         _binding.btnGoToLogIn.setOnClickListener {
             Intent(this, LogInActivity::class.java).also {
                 startActivity(it)
+                this.finish()
             }
         }
     }

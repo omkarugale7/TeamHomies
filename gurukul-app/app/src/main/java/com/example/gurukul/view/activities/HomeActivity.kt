@@ -7,7 +7,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.gurukul.view.activities.databinding.ActivityHomeBinding
+import com.example.gurukul.R
+import com.example.gurukul.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
@@ -31,5 +32,10 @@ class HomeActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        supportActionBar!!.hide()
+
+
     }
 }

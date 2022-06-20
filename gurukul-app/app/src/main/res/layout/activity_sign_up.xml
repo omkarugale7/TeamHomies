@@ -15,9 +15,8 @@
 
     <ImageButton
         android:id="@+id/btn_back_arrow"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="8dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/ic_vector_back_arrow"
         android:background="@color/bone_white"
         android:contentDescription="@string/back_button" />
@@ -26,7 +25,8 @@
         android:id="@+id/iv_app_logo"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="-120dp"
+        android:layout_marginTop="-80dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/gurukul_logo"
         android:contentDescription="@string/app_logo" />
 
@@ -36,7 +36,7 @@
         android:text="@string/sign_up"
         android:textSize="24sp"
         android:textColor="@color/text_color_primary"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="-64dp"
         android:fontFamily="@font/montserrat_bold"
         />
@@ -60,9 +60,12 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:inputType="textEmailAddress"
             tools:text="puriabhijit000@gmail.com"
+            android:textSize="16sp"
             android:hint="@string/email"
             android:textColorHint="@color/text_color_secondary"
             android:textColor="@color/text_color_primary"
@@ -92,9 +95,12 @@
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:inputType="textPersonName"
             tools:text="Abhijit Puri"
+            android:textSize="16sp"
             android:hint="@string/name"
             android:textColorHint="@color/text_color_secondary"
             android:textColor="@color/text_color_primary"
@@ -123,8 +129,11 @@
             android:id="@+id/et_prn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24sp"
+            android:layout_marginStart="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:inputType="text"
+            android:textSize="16sp"
             tools:text="2020BTECS00082"
             android:hint="prn"
             android:textColorHint="@color/text_color_secondary"
@@ -155,9 +164,12 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24sp"
+            android:layout_marginStart="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             tools:text="Password"
             android:hint="@string/password"
+            android:textSize="16sp"
             android:textColorHint="@color/text_color_secondary"
             android:inputType="textPassword"
             android:textColor="@color/text_color_primary"
@@ -185,6 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/branch"
+                android:textSize="16sp"
                 android:textColor="@color/text_color_secondary"
                 android:fontFamily="@font/montserrat_bold"/>
 
@@ -208,6 +221,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16sp"
                 android:text="@string/graduation_year"
                 android:textColor="@color/text_color_secondary"
                 android:fontFamily="@font/montserrat_bold"/>
@@ -229,9 +243,9 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_up"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginTop="32dp"
         app:cornerRadius="10dp"
         android:backgroundTint="@color/blue"
@@ -252,7 +266,7 @@
             android:layout_height="wrap_content"
             android:text="@string/already_have_an_account"
             android:textColor="@color/text_color_secondary"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:fontFamily="@font/montserrat_bold"/>
 
         <TextView
