@@ -24,6 +24,8 @@ function SuperAdminLogin() {
     onSubmit: (values) => {
       console.log(values);
       LoginHandler(values);
+      values.username='';
+    values.password='';
     }
   });
 
@@ -47,8 +49,11 @@ function SuperAdminLogin() {
       if (response.status === 201){
         const data = response.data;
         console.log(response.status);
+        localStorage.setItem("username", data.username);
+          localStorage.setItem("token", data["token"]);
+          console.log(data["token"]);
         alert("Successfully Logged In");
-        window.location='/resetPassword';
+        window.location='/superAdmin';
       }
     })
     .catch((err) => {
