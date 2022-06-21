@@ -1,5 +1,7 @@
 package com.example.gurukul.view.activities
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +10,7 @@ import android.transition.Visibility
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.gurukul.R
@@ -39,6 +42,10 @@ class AssignmentUploadActivity : BaseActivity() {
         _binding.tvSubject.text = assignmentInfo.subject
         _binding.tvAssignmentName.text = "Assignment ${assignmentInfo.assignmentNum} : ${assignmentInfo.assignmentTitle}"
         _binding.tvDesc.text = assignmentInfo.assignmentDesc
+        _binding.tvDueDate.text = assignmentInfo.due_date
+
+        val currTime = System.currentTimeMillis()
+
 
         val fileLink = assignmentInfo.file_link
         if (fileLink.isEmpty()) {
@@ -51,12 +58,75 @@ class AssignmentUploadActivity : BaseActivity() {
             }
         }
 
+        // if already uploaded assignment
         if (assignmentInfo.uploadedFile != ""){
-            Toast.makeText(this, "already uploaded", Toast.LENGTH_LONG).show()
+
+
+            showSnackBar("Already Submitted Assignment", false)
+
+            _binding.llViewUserSubmission.setOnClickListener {
+
+                val intent = Intent(Intent.ACTION_VIEW)
+
+                intent.data = Uri.parse(assignmentInfo.uploadedFile)
+
+                startActivity(intent)
+
+            }
+
+
+            _binding.ivDeleteAssignment.setOnClickListener {
+
+
+                val dialogBuilder = AlertDialog.Builder(this)
+                dialogBuilder.setTitle("Delete Assignment")
+                dialogBuilder.setMessage("Are you sure?")
+                dialogBuilder.setIcon(R.drawable.delete_icon)
+                dialogBuilder.setPositiveButton("Yes"){_, _ ->
+
+                    var deleteAssignmentURL = "https://wcegurukul.herokuapp.com/deleteAssignment"
+
+                    val pref = getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
+                    val username = pref.getString(Constants.LOGGED_IN_USERNAME, "")
+
+                    val _id = assignmentInfo.assignmentID
+
+                    deleteAssignmentURL += "?username=${username}&_id=${_id}"
+
+
+                    val sr = StringRequest(Request.Method.DELETE, deleteAssignmentURL, {
+                        Toast.makeText(this, "Assignment Deleted Successfully!", Toast.LENGTH_LONG).show()
+                        Intent(this, HomeActivity::class.java).also {
+                            it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                            startActivity(it)
+                        }
+                    },{
+                        Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
+                    })
+
+                    val queue = Volley.newRequestQueue(this)
+                    queue.add(sr)
+
+                }
+
+                dialogBuilder.setNegativeButton("No"){_, _ ->
+
+                }
+
+                val dialog = dialogBuilder.create()
+                dialog.setCancelable(false)
+                dialog.show()
+            }
 
             _binding.clUserSubmissionDone.visibility = View.VISIBLE
             _binding.llUserSubmissionUploading.visibility = View.GONE
 
+
+        }
+        else if (currTime > assignmentInfo.due_time.toLong()){
+            _binding.clUserSubmissionDone.visibility = View.GONE
+            _binding.llUserSubmissionUploading.visibility = View.GONE
+            showSnackBar("Assignment overdue", true)
         } else {
             Toast.makeText(this, "You haven't uploaded", Toast.LENGTH_LONG).show()
 
@@ -68,7 +138,6 @@ class AssignmentUploadActivity : BaseActivity() {
                 intent.type = "application/pdf"
                 startActivityForResult(intent, 1)
             }
-
 
             _binding.btnUploadFile.setOnClickListener {
 
@@ -84,7 +153,7 @@ class AssignmentUploadActivity : BaseActivity() {
                             pdfURL = url!!.toString()
                             Log.d("PDF URL", pdfURL)
 
-                            val registerUrl = "https://wcegurukul.herokuapp.com/uploadAssignments"
+                            val registerUrl = "https://wcegurukul.herokuapp.com/uploadAssignment"
 
                             //Toast.makeText(this, branch + "  " + graduationYear, Toast.LENGTH_LONG).show()
 
@@ -109,7 +178,10 @@ class AssignmentUploadActivity : BaseActivity() {
 
                                     Toast.makeText(this, "Assignment Uploaded Successfully", Toast.LENGTH_LONG).show()
 
-                                    this.finish()
+                                    Intent(this, HomeActivity::class.java).also {
+                                        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                        startActivity(it)
+                                    }
 
                                 },
                                 {
@@ -144,7 +216,6 @@ class AssignmentUploadActivity : BaseActivity() {
                     Toast.makeText(this, "URI IS NULL", Toast.LENGTH_LONG).show()
                 }
             }
-
 
         }
     }

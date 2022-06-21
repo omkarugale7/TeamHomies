@@ -19,6 +19,9 @@ class ForgotPassword : AppCompatActivity() {
             val email = _binding.etEmail.text.toString()
             val prn = _binding.etPrn.text.toString()
             if (email.isNotEmpty() && prn.isNotEmpty()) {
+
+
+
                 Intent(this, VerifyEmailActivity::class.java).also {
                     it.putExtra("title", "You can now reset your Password")
                     it.putExtra(
