@@ -30,7 +30,7 @@ class NoticeAdapter(private val fragment : Fragment, private val notice_array : 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticeViewHolder {
-        val binding = ItemNoticeLayoutBinding.inflate(fragment.layoutInflater)
+        val binding = ItemNoticeLayoutBinding.inflate(fragment.layoutInflater, parent, false)
 
         return NoticeViewHolder(binding, fragment)
     }

@@ -84,7 +84,19 @@ class LogInActivity : BaseActivity() {
             {
                 hideProgressDialog()
 
-                //Log.d("TAG", it)
+                Log.d("TAG", it)
+
+                val jsonObject = JSONObject(it)
+
+                val userObj = jsonObject.getJSONObject("user")
+
+                val sem = userObj.getInt("semester")
+
+                val editor = pref.edit()
+
+                editor.putInt(Constants.LOGGED_IN_USER_SEM, sem)
+
+                editor.apply()
 
                 Intent(this, HomeActivity::class.java).also {it1 ->
                     startActivity(it1)
@@ -159,6 +171,12 @@ class LogInActivity : BaseActivity() {
 
                     val jsonObject = JSONObject(it)
 
+                    val userObj = jsonObject.getJSONObject("user")
+
+                    val sem = userObj.getInt("semester")
+
+
+
                     Log.e("TAG", it)
 
                     val pref = this.getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
@@ -166,6 +184,7 @@ class LogInActivity : BaseActivity() {
                     val editor = pref.edit()
                     editor.putString(Constants.LOGGED_IN_USERNAME, prn)
                     editor.putString(Constants.LOGGED_IN_PASSWORD, password)
+                    editor.putInt(Constants.LOGGED_IN_USER_SEM, sem)
 
                     editor.apply()
 

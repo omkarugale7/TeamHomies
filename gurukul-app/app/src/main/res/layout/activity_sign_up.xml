@@ -25,7 +25,7 @@
         android:id="@+id/iv_app_logo"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="-80dp"
+        android:layout_marginTop="-90dp"
         android:layout_marginStart="8dp"
         android:src="@drawable/gurukul_logo"
         android:contentDescription="@string/app_logo" />
@@ -41,12 +41,79 @@
         android:fontFamily="@font/montserrat_bold"
         />
 
-    <LinearLayout
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_vector_person"
+                android:contentDescription="@string/name_icon" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:inputType="textPersonName"
+                tools:text="Abhijit Puri"
+                android:textSize="16sp"
+                android:hint="@string/name"
+                android:textColorHint="@color/text_color_secondary"
+                android:textColor="@color/text_color_primary"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/text_color_secondary"
+                android:autofillHints="name" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_vector_school"
+                android:contentDescription="@string/school_icon" />
+
+            <EditText
+                android:id="@+id/et_prn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:inputType="text"
+                android:textSize="16sp"
+                tools:text="2020BTECS00082"
+                android:hint="prn"
+                android:textColorHint="@color/text_color_secondary"
+                android:textColor="@color/text_color_primary"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/text_color_secondary"
+                />
+
+        </LinearLayout>
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -74,75 +141,43 @@
             android:autofillHints="emailAddress" />
 
 
+
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_vector_person"
-            android:contentDescription="@string/name_icon" />
-
-        <EditText
-            android:id="@+id/et_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:inputType="textPersonName"
-            tools:text="Abhijit Puri"
-            android:textSize="16sp"
-            android:hint="@string/name"
-            android:textColorHint="@color/text_color_secondary"
-            android:textColor="@color/text_color_primary"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/text_color_secondary"
-            android:autofillHints="name" />
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_vector_phone"
+                android:contentDescription="@string/school_icon" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
+            <EditText
+                android:id="@+id/et_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:inputType="phone"
+                android:textSize="16sp"
+                tools:text="9623697793"
+                android:hint="prn"
+                android:textColorHint="@color/text_color_secondary"
+                android:textColor="@color/text_color_primary"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/text_color_secondary"
+                />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_vector_school"
-            android:contentDescription="@string/school_icon" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/et_prn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:inputType="text"
-            android:textSize="16sp"
-            tools:text="2020BTECS00082"
-            android:hint="prn"
-            android:textColorHint="@color/text_color_secondary"
-            android:textColor="@color/text_color_primary"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/text_color_secondary"
-            />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -182,9 +217,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24sp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="12sp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -211,6 +245,28 @@
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/semester"
+                android:textSize="16sp"
+                android:textColor="@color/text_color_secondary"
+                android:fontFamily="@font/montserrat_bold"/>
+
+            <Spinner
+                android:id="@+id/spinner_semesters"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/text_color_secondary"
+                />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -246,7 +302,7 @@
         android:layout_height="65dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:cornerRadius="10dp"
         android:backgroundTint="@color/blue"
         android:text="@string/continue_"
@@ -258,7 +314,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <TextView
