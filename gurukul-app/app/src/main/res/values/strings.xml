@@ -13,7 +13,7 @@
     <string name="continue_">Continue</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login">Login</string>
-    <string name="graduation_year">Graduation year:</string>
+    <string name="graduation_year">Grad year:</string>
     <string name="branch">Branch:</string>
     <string name="log_in">Log In</string>
     <string name="log_in_as_guest">Log In As Guest</string>
@@ -24,4 +24,5 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="semester">Semester:</string>
 </resources>

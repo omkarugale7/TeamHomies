@@ -1,5 +1,6 @@
 package com.example.gurukul.view.fragments
 
+import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gurukul.adapters.NoticeAdapter
 import com.example.gurukul.databinding.FragmentHomeBinding
 import com.example.gurukul.models.Notice
+import com.example.gurukul.view.activities.AssignmentsSubjectsActivity
+import com.example.gurukul.view.activities.NotesSubjectsActivity
 
 class HomeFragment : Fragment() {
 
@@ -29,6 +32,20 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+
+        _binding!!.cardNotes.setOnClickListener {
+            Intent(requireContext(), NotesSubjectsActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        _binding!!.cardAssignments.setOnClickListener {
+            Intent(requireContext(), AssignmentsSubjectsActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
 
         getNotices()
 

@@ -35,6 +35,7 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_attendance"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardUseCompatPadding="true"
@@ -70,6 +71,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_notes"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardUseCompatPadding="true"
@@ -117,6 +119,7 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_assignments"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardUseCompatPadding="true"
@@ -152,6 +155,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_documents"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardUseCompatPadding="true"
@@ -171,12 +175,12 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
-                            android:src="@drawable/notes_icon"/>
+                            android:src="@drawable/documents_icon"/>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Notes"
+                            android:text="Documents"
                             android:gravity="center"
                             android:padding="8dp"
                             android:textColor="@color/text_color_primary"

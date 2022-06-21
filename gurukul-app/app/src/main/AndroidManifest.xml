@@ -12,6 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gurukul">
         <activity
+            android:name=".view.activities.AssignmentUploadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.AssignmentsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.AssignmentsSubjectsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.PDFViewerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.PdfViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.NotesListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.NotesSubjectsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.ForgotPassword"
             android:exported="false" />
         <activity
@@ -23,23 +44,19 @@
             android:exported="false" />
         <activity
             android:name=".view.activities.LogInActivity"
-            android:exported="true" >
-
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".view.activities.BaseActivity"
             android:exported="false" />
         <activity
             android:name=".view.activities.SignUpActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".view.activities.MainActivity"
             android:exported="false" />

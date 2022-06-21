@@ -23,6 +23,7 @@ class SignUpActivity : BaseActivity() {
     private lateinit var _binding : ActivitySignUpBinding
     lateinit var branch : String
     var graduationYear : Int =  0
+    var semester : Int = 0 ;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +32,10 @@ class SignUpActivity : BaseActivity() {
 
         val branchesSpinner = _binding.spinnerBranches
         val graduationYearSpinner = _binding.spinnerGraduationYear
+        val semestersSpinner = _binding.spinnerSemesters
         val branchesArray: ArrayList<String> = arrayListOf("CSE", "IT", "ELECTRONICS", "MECH", "ELECTRICAL", "CIVIL")
         val graduationYearArr : ArrayList<String> = ArrayList()
+        val semestersArr = arrayListOf("1", "2", "3", "4", "5", "6", "7", "8")
 
         for (year in Calendar.getInstance().get(Calendar.YEAR) + 4 downTo 1950){
             graduationYearArr.add(year.toString())
@@ -40,7 +43,7 @@ class SignUpActivity : BaseActivity() {
 
         setSimpleSpinner(branchesSpinner, branchesArray)
         setSimpleSpinner(graduationYearSpinner, graduationYearArr)
-
+        setSimpleSpinner(semestersSpinner, semestersArr)
 
         branchesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
@@ -77,6 +80,25 @@ class SignUpActivity : BaseActivity() {
             }
         }
 
+        semestersSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                if (parent?.getChildAt(0) != null)
+                    (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#758196"))
+                semester = semestersArr[position].toInt()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
+
         val actionBar = supportActionBar!!
         actionBar.hide()
 
@@ -105,6 +127,7 @@ class SignUpActivity : BaseActivity() {
         val name = _binding.etName.text.toString().trim()
         val prn = _binding.etPrn.text.toString().trim().lowercase()
         val password = _binding.etPassword.text.toString().trim()
+        val mobile = _binding.etMobile.text.toString().trim()
 
         if (email.isEmpty()){
             showSnackBar("Please enter your email address to register", true)
@@ -122,6 +145,8 @@ class SignUpActivity : BaseActivity() {
         } else if (password.length < 8){
             showSnackBar("Please enter a password of at least 8 characters", true)
             return false
+        } else if (mobile.length != 10){
+            showSnackBar("Please enter a valid 10-digit mobile number", true)
         }
 
         return true
@@ -130,7 +155,6 @@ class SignUpActivity : BaseActivity() {
 
     private fun signUpUser()
     {
-
         if (validateDetails())
         {
 
@@ -141,6 +165,7 @@ class SignUpActivity : BaseActivity() {
             val email = _binding.etEmail.text.toString().trim().lowercase()
             val name = _binding.etName.text.toString().trim()
             val prn = _binding.etPrn.text.toString().trim().lowercase()
+            val mobile = _binding.etMobile.text.toString().trim()
             val password = _binding.etPassword.text.toString().trim()
 
             //Toast.makeText(this, branch + "  " + graduationYear, Toast.LENGTH_LONG).show()
@@ -155,6 +180,8 @@ class SignUpActivity : BaseActivity() {
                 jsonBodyObject.put("branch", branch)
                 jsonBodyObject.put("graduation_year", graduationYear)
                 jsonBodyObject.put("password", password)
+                jsonBodyObject.put("semester", semester)
+                jsonBodyObject.put("phone", mobile)
             } catch (exception : Exception) {
                 exception.printStackTrace()
             }
@@ -204,8 +231,6 @@ class SignUpActivity : BaseActivity() {
             requestQueue.add(sr)
 
         }
-
-
     }
 
 }
