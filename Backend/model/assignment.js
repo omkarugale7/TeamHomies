@@ -1,30 +1,68 @@
 const Mongoose = require('mongoose');
+
+const UserAssignmentSchema = new Mongoose.Schema({
+    username: {
+      type: String,
+      required: true,
+    },
+    file : {
+      type: String,
+      required: true
+    },
+    date : {
+      type: String,
+      default : new Date().toDateString()
+    }
+  })
   
 const assignmentSchema = new Mongoose.Schema({
     assignment_date : {
-        type: Date,
-        default: new Date()
+        type: String,
+        default: new Date().toDateString()
+    },
+    assignment_title : {
+        type: String,
+        default: ""
+    },
+    assignment_desc : {
+        type: String,
+        default: ""
     },
     assignment_due_date : {
-        type: Date,
+        type: String,
         required: true
     },
     assignment_due_time : {
-        type: Date,
+        type: Number,
         required: true
     },
     assignment_teacher : {
         type: String,
         required: true
     },
+    assignment_number : {
+        type: Number,
+        required: true
+    },
     assignment_subject : {
         type: String,
         required: true
     },
+    assignment_subject_name : {
+        type: String,
+        required: true
+    },
+    assignment_file : {
+        type: String,
+        default: ""
+    },
     students_submitted : {
-        type: [String],
-        required: true,
-        default: null
+        type: [{
+            "username": String,
+            "file": String,
+            "date": String
+        }],
+        default: []
     }
 });
 

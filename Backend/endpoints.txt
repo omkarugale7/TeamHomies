@@ -1,0 +1,29 @@
+/register -> post -> username, name, password, email, phone, branch, prn, graduation_year
+/login -> post -> username, password
+/deleteUser -> delete -> username
+
+/uploadNotice -> post -> title, desc, img
+/getNotice -> get -> 
+
+/uploadNotes -> post -> title, desc, semester, subject, module, module_name, part, file
+/getNotes -> get -> semester, subject (Query)
+
+/adminRegister -> post -> username, password, name, email, phone, joining_year
+/adminLogin -> post -> username, password
+/superAdminLogin -> post -> username, password
+/deleteAdmin -> delete -> username
+
+/forgotPassword -> post -> email
+
+/adminForgotPassword -> post -> email
+
+/subjectList -> get -> semester
+/sessionList -> get -> subject
+/createSession -> post -> session_teacher, session_subject, session_password, (session_location -> Abhi Baaki Hai)
+/stopSession -> post -> id(session ka)
+/markPresent -> post -> username, id(session ka)
+
+/getAssignments -> get -> subject (Query)
+/uploadAssignments -> post -> username, _id(assignment ka), file
+
+/webHome -> get -> 

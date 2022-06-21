@@ -5,7 +5,10 @@ const noticeSchema = new Mongoose.Schema({
         type: String,
         required: true
     },
-    desc: String,
+    desc: {
+        type: String,
+        default : ""
+    },
     img: {
         type: String,
         required: true

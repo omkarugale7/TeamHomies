@@ -1,11 +1,20 @@
 const Admin = require("./../model/admin");
 const bcrypt = require("bcryptjs");
+const Log = require("./../model/log");
 
 const jwt = require("jsonwebtoken");
 const { findById } = require("./../model/admin");
 
 exports.adminRegister = async (req, res) => {
   const { username, password, name, role, email, phone, joining_year } = await req.body;
+  const checkAdmin = await Admin.findOne({"email": email});
+  if(checkAdmin) {
+    if(checkAdmin.verified)
+    return res.status(400).json({ message: "Email Already Exists !!!"});
+    else {
+      await Admin.findOneAndDelete({"email": email});
+    }
+  }
   if (password.length < 8) {
     return res.status(400).json({ message: "Password less than 8 characters" });
   }
@@ -104,9 +113,9 @@ exports.superAdminLogin = async (req, res, next) => {
       })
     }
     try {
-        console.log(username);
+        // console.log(username);
       const admin = await Admin.findOne({ "username" : username });
-      console.log(admin);
+      // console.log(admin);
       if (!admin) {
         res.status(400).json({
           message: "Login not successful",
@@ -127,6 +136,10 @@ exports.superAdminLogin = async (req, res, next) => {
               httpOnly: true,
               maxAge: maxAge * 1000,
             });
+            Log.create({
+              username,
+              "role": admin.role
+            }).then(log => console.log(log));
             res.status(201).json({
               message: "Admin successfully Logged in",
               admin: admin._id,
@@ -143,4 +156,18 @@ exports.superAdminLogin = async (req, res, next) => {
         error: error.message,
       });
     }
+  }
+
+  exports.deleteAdmin = async (req, res, next) => {
+    const { username } = req.body
+    await Admin.findOne({"username": username})
+      .then(admin => admin.remove())
+      .then(admin =>
+        res.status(201).json({ message: "User successfully deleted", admin })
+      )
+      .catch(error =>
+        res
+          .status(400)
+          .json({ message: "An error occurred", error: error.message })
+      )
   }

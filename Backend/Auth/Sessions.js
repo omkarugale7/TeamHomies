@@ -11,6 +11,28 @@ exports.sessionList = async (req, res) => {
   }
 };
 
+exports.markPresent = async (req,res) => {
+  const { username, id } = await req.body;
+
+  try {
+    var session = await Session.findById(id);
+    if(session.session_state) {
+      if(!session.students_present.includes(username)) {
+        session.students_present.push(username);
+        session.save();
+        res.status(201).json({message: "Attendance Updated !!!"});
+      } else {
+        res.status(201).json({message: "Attendance Already Updated !!!"});
+      }
+      
+    } else {
+      res.status(400).json({message: "Session Over !!!"});
+    }
+  } catch {
+    res.status(400).json({message: "Server Error !!!"});
+  }
+}
+
 exports.createSession = async (req, res) => {
   const { session_teacher, session_subject, session_password } = await req.body;
 
@@ -25,6 +47,12 @@ exports.createSession = async (req, res) => {
   });
 };
 
-// exports.stopSession = async (req, res) => {
-//     const { session_id }
-// }
+exports.stopSession = async (req, res) => {
+    const { id } = req.body;
+    try {
+      Session.findByIdAndUpdate(id, {"state": false});
+      res.status(201).json({message: "Session Stopped SuccessFully !!!"});
+    } catch {
+      res.status(400).json({message: "Invalid Session !!!"});
+    }
+}

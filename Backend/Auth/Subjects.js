@@ -1,7 +1,9 @@
 const Subject = require("./../model/subject");
 
 exports.subjectList = async(req,res) => {
-    const { semester } = await req.body;
+    const {semester}  = req.query;
+
+    console.log(semester);
 
     try {
         const subjects = await Subject.find({"semester" : semester});

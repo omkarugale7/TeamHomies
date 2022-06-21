@@ -1,6 +1,7 @@
 const User = require("./../model/user");
 const bcrypt = require("bcryptjs")
 const sendEmail = require("./../utils/email");
+const Log = require("./../model/log");
 
 
 const jwt = require('jsonwebtoken');
@@ -10,11 +11,15 @@ const { findById } = require("./../model/user");
 
 exports.register = async (req, res, next) => {
   const { username, name, password, role, email, phone, branch, prn, graduation_year } = await req.body;
-  // const checkUser = User.findOne({email: email});
+  const checkUser = await User.findOne({"email": email});
   // console.log(checkUser);
-  // if(checkUser) {
-  //     return res.status(400).json({ message: "Email Already Exists !!!"});
-  // }
+  if(checkUser) {
+      if(checkUser.verified)
+      return res.status(400).json({ message: "Email Already Exists !!!"});
+      else {
+        await User.findOneAndDelete({"email": email});
+      }
+  }
   if (password.length < 8) {
     return res.status(400).json({ message: "Password less than 8 characters" })
   }
@@ -98,9 +103,13 @@ exports.login = async (req, res, next) => {
             httpOnly: true,
             maxAge: maxAge * 1000,
           });
+          Log.create({
+            username,
+            "role": user.role
+          }).then(log => console.log(log));
           res.status(201).json({
             message: "User successfully Logged in",
-            user: user._id,
+            user: user,
             token: token
           });
         } else {
@@ -117,8 +126,8 @@ exports.login = async (req, res, next) => {
 }
 
 exports.deleteUser = async (req, res, next) => {
-  const { id } = req.body
-  await User.findById(id)
+  const { username } = req.body
+  await User.findOne({"username": username})
     .then(user => user.remove())
     .then(user =>
       res.status(201).json({ message: "User successfully deleted", user })

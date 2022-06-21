@@ -11,7 +11,7 @@ exports.uploadNotice = async (req,res) => {
 
 exports.getNotice = async (req,res) => {
     try {
-        const notices = await Notice.find();
+        const notices = await Notice.find().limit(5);
         res.status(200).send({data: notices});
     } catch (err) {
         res.status(500).send({message: "Internal Server Error !!!"});

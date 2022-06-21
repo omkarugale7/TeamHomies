@@ -35,7 +35,7 @@ const UserSchema = new Mongoose.Schema({
   },
   prn : {
     type: String,
-    require: true,
+    required: true,
   },
   graduation_year : {
     type: Number,

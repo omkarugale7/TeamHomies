@@ -28,7 +28,7 @@ const sessionSchema = new Mongoose.Schema({
     students_present : {
         type: [String],
         required: true,
-        default: null
+        default: []
     }
 });
 
