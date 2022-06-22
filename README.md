@@ -21,3 +21,15 @@ it can send daily quotes to desired users.
 upon asking it also sends programming questions from different websites
 also user can modify the difficulty levels as they desire.
 this is a one stop solution desired to easify and solve all the problems of college system. we have added as many features as we could in 4 days. and if given chance we can add many such helpful and out of the box features.
+
+
+
+
+
+ABOUT WEBSITE:
+1.Clone this repository
+2.Open Gurukul-web directory in your terminal
+3.run "npm i" command
+4.run "npm start" command to start the admin portal
+5.superadmin credentials: username:'wcegurukul',password : 'wcegurukul'
+6.You can create a admin account from super admin.
