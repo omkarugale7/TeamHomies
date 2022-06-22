@@ -157,7 +157,7 @@ sendMessage = () => {
 
 // // // sendMessage();
 function atTwelveMidnight() {
-    Cron.schedule('40 12  * * *', () => {
+    Cron.schedule('04 00  * * *', () => {
         getAssignmentsData();
         // sendMessage();
         console.log('yeh raat ko jayega');
@@ -253,7 +253,7 @@ getNoticedata = async () => {
 // const myTimeout = setTimeout(getNoticedata, 5000);
 // myTimeout;
 function atNigh() {
-    Cron.schedule('7 0  * * *', () => {
+    Cron.schedule('0 6  * * *', () => {
         // getAssignmentsData();
         getNoticedata();
         // sendMessage();
