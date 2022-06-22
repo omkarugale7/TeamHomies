@@ -14,7 +14,8 @@ function NavigationAdmin() {
           {
               title:"COURSES",
               logo:1,
-              id:1
+              id:1,
+              addr:'/admin'
           },
           {
             title:"NOTICE",

@@ -13,7 +13,9 @@ function SuperAdmin() {
   useEffect(() => {
     const URL = "https://wcegurukul.herokuapp.com/webHome";
     axios
-      .get(URL, {
+      .get(URL,
+       
+        {
         headers: {
           "Content-Type": "application/json",
           "x-access-token": `${localStorage.getItem('token')}`,

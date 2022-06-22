@@ -33,7 +33,8 @@ function MenuItemAdmin({i}) {
       <div className="icon-placeholder" style={style} >
           {i.logo===1? (<GiOpenBook size={40}/>) : i.logo===2?(<GoBell size={40}/>):null}
           </div>
-      <div className="text-placeholder" style={style} >{i.title} </div>
+      <div className="text-placeholder" style={style} >
+        <a style={{textDecoration:'none',color:'black'}} href={i.addr}>{i.title} </a></div>
     </motion.li>
   )
 }

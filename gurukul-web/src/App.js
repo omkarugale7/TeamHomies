@@ -9,6 +9,10 @@ import SuperAdmin from './Components/superAdmin/SuperAdmin';
 import CreateReg from './Components/superAdmin/CreateReg';
 import DeleteReg from './Components/superAdmin/DeleteReg';
 import Admin from './Components/Admin/Admin';
+import Subject from './Components/Admin/Courses/Subject';
+import Assignment from './Components/Admin/Courses/Assignment';
+import Notes from './Components/Admin/Courses/Notes';
+import AssignmentUpload from './Components/Admin/Courses/upload-assignment/AssignmentUpload';
 function App() {
   return (
     <div className="App">
@@ -23,6 +27,10 @@ function App() {
           <Route exact path = "/createReg" element={<CreateReg/>}/>
           <Route exact path = "/deleteReg" element={<DeleteReg/>}/>
           <Route exact path = "/admin" element={<Admin/>}/>
+          <Route exact path = "/adminSubject" element={<Subject/>}/>
+          <Route exact path = "/adminAssignment" element={<Assignment/>}/>
+          <Route exact path = "/adminNotes" element={<Notes/>}/>
+          <Route exact path = "/assignmentUpload" element={<AssignmentUpload/>}/>
         </Routes>
       </Router>
     </div>

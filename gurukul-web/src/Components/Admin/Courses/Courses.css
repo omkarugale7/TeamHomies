@@ -13,3 +13,50 @@
         width: 90%;
     }
 }
+
+
+/* Subjects */
+
+.subject_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub_assignment{
+    background-color: burlywood;
+    border-radius: 15px;
+    width: 40%;
+    height: 3rem;
+    padding: 3%;
+    padding-bottom: 6%;
+    margin-right: 20%;
+    margin-left: -5%;
+}
+
+.sub_notes{
+    background-color: coral;
+    border-radius: 15px;
+    width: 40%;
+    height: 3rem;
+    padding: 3%;
+    padding-bottom: 6%;
+}
+.btn_link{
+    text-decoration: none;
+    color: rgb(11, 10, 10);
+}
+.btn_link:hover{
+    color: black;
+}
+.sub_notes:focus{
+    height: 4rem;
+    font-size: 200%;
+}
+
+
+/* Assignments */
+.cre-ass{
+    background-color: rgb(128, 192, 55);
+    margin-bottom: 5%;
+}
