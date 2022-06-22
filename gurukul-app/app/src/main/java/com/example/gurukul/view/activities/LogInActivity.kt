@@ -183,7 +183,7 @@ class LogInActivity : BaseActivity() {
                     val editor = pref.edit()
                     editor.putString(Constants.LOGGED_IN_USERNAME, prn)
                     editor.putString(Constants.LOGGED_IN_PASSWORD, password)
-                    editor.putString(Constants.SEMESTER, sem.toString())
+                    editor.putInt(Constants.LOGGED_IN_USER_SEM, sem)
                     editor.putString(Constants.JWT_TOKEN, token)
                     editor.putString(Constants.NAME, userObj.getString("name"))
                     editor.putString(Constants.EMAIL, userObj.getString("email"))

@@ -58,7 +58,7 @@ class AttendanceSubjectsActivity : BaseActivity() {
 
             val subjJsonArr = jsonObject.getJSONArray("data")
 
-            Log.d("First Subject", subjJsonArr[0].toString())
+            //Log.d("First Subject", subjJsonArr[0].toString())
 
             val subjArr = ArrayList<Subject>()
 
