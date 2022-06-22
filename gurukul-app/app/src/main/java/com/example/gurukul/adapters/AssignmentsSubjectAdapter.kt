@@ -5,10 +5,11 @@ import android.content.Intent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gurukul.databinding.ItemNotesSubjectLayoutBinding
-import com.example.gurukul.models.NotesSubject
+import com.example.gurukul.models.Subject
 import com.example.gurukul.view.activities.AssignmentsListActivity
+import com.example.gurukul.view.activities.AttendanceListActivity
 
-class AssignmentsSubjectAdapter(private val activity : Activity, private val subjects_array : ArrayList<NotesSubject>) : RecyclerView.Adapter<AssignmentsSubjectAdapter.AssignmentsSubjectViewHolder>(){
+class AssignmentsSubjectAdapter(private val activity : Activity, private val subjects_array : ArrayList<Subject>) : RecyclerView.Adapter<AssignmentsSubjectAdapter.AssignmentsSubjectViewHolder>(){
     class AssignmentsSubjectViewHolder(_binding: ItemNotesSubjectLayoutBinding) : RecyclerView.ViewHolder(_binding.root)
     {
         val tvSubjectTitle = _binding.tvSubjectTitle

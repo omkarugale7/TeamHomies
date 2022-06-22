@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gurukul.databinding.ItemNotesSubjectLayoutBinding
 
-import com.example.gurukul.models.NotesSubject
+import com.example.gurukul.models.Subject
 import com.example.gurukul.view.activities.NotesListActivity
 
 
-class NotesSubjectAdapter(private val activity :Activity, private val subjects_array : ArrayList<NotesSubject>) : RecyclerView.Adapter<NotesSubjectAdapter.NotesSubjectViewHolder>(){
+class NotesSubjectAdapter(private val activity :Activity, private val subjects_array : ArrayList<Subject>) : RecyclerView.Adapter<NotesSubjectAdapter.NotesSubjectViewHolder>(){
     class NotesSubjectViewHolder(_binding: ItemNotesSubjectLayoutBinding) : RecyclerView.ViewHolder(_binding.root)
     {
         val tvSubjectTitle = _binding.tvSubjectTitle

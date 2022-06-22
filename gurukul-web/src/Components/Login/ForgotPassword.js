@@ -33,7 +33,7 @@ function ForgotPassword() {
   }
 
   const LoginHandler=(values)=>{
-    const URL = 'https://wcegurukul.herokuapp.com/adminLogin';
+    const URL = 'https://wcegurukul.herokuapp.com/adminForgotPassword';
     axios
     .post(
       URL,

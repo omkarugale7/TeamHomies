@@ -1,9 +1,10 @@
 .background{
-    background-color: #47B5FF;
+    background: linear-gradient(90deg, #2160df 0%, rgb(146, 184, 209) 100%);
     margin: 0%;
     min-height: 100vh;
     min-width: 100vw;
     display: flex;
+    overflow: hidden;
     /* flex-direction: column;
     justify-content: center;
     align-items: center; */

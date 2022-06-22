@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gurukul.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class ForumFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
