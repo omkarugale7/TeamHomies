@@ -32,6 +32,10 @@ const AdminSchema = new Mongoose.Schema({
       joining_year : {
         type: Number,
         required: true,
+      },
+      subjects : {
+        type: [String],
+        default: []
       }
 })
 

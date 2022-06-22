@@ -36,18 +36,10 @@ exports.register = async (req, res, next) => {
       graduation_year
     })
       .then((user) => {
-        const maxAge = 3 * 60 * 60;
-        const token = jwt.sign(
-          { id: user._id },
-          process.env.jwtSecret,
-          {
-            expiresIn: maxAge,
+        var token = jwt.sign({ id: user._id }, process.env.jwtSecret, {
+            expiresIn: 86400,
           }
         );
-        res.cookie("jwt", token, {
-          httpOnly: true,
-          maxAge: maxAge * 1000,
-        });
         try {
           const message = `${process.env.BASE_URL}/verify/${token}`;
           sendEmail(user.email, "Verify Email !!!", message);
@@ -58,11 +50,12 @@ exports.register = async (req, res, next) => {
         res.status(201).json({
           message: "User Successfully Created",
           user: user._id,
+          token: token
         });
       })
       .catch((error) =>
         res.status(400).json({
-          message: "User Not Successfully created",
+          message: "There was a problem registering the User !!!",
           error: error.message,
         })
       );
@@ -91,18 +84,10 @@ exports.login = async (req, res, next) => {
     } else {
       bcrypt.compare(password, user.password).then(function (result) {
         if (result) {
-          const maxAge = 3 * 60 * 60;
-          const token = jwt.sign(
-            { id: user._id },
-            process.env.jwtSecret,
-            {
-              expiresIn: maxAge,
-            }
+          var token = jwt.sign({ id: user._id }, process.env.jwtSecret, {
+            expiresIn: 86400,
+          }
           );
-          res.cookie("jwt", token, {
-            httpOnly: true,
-            maxAge: maxAge * 1000,
-          });
           Log.create({
             username,
             "role": user.role
@@ -126,7 +111,7 @@ exports.login = async (req, res, next) => {
 }
 
 exports.deleteUser = async (req, res, next) => {
-  const { username } = req.body
+  const { username } = req.query;
   await User.findOne({"username": username})
     .then(user => user.remove())
     .then(user =>
@@ -151,15 +136,3 @@ exports.verify = async (req,res) => {
   res.status(201).json({message : "Correct !!!", User});
   
 }
-
-// exports.tokenVerify = async (req,res) => {
-
-//   const {token} = req.body;
-//   console.log(token);
-//   try {
-//     req.auth = await jwtVerifyAsync(token, req.app.get('your-secret'))
-//   } catch (err) {
-//     res.status(400).json({message: "Session Expired !! Please Login Again"});
-//   }
-//   res.status(201).json({message: "Login Success !!!"});
-// }

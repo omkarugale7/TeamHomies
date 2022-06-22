@@ -29,17 +29,14 @@ exports.adminRegister = async (req, res) => {
       joining_year,
     })
       .then((admin) => {
-        const maxAge = 3 * 60 * 60;
-        const token = jwt.sign({ id: admin._id }, process.env.jwtSecret, {
-          expiresIn: maxAge,
-        });
-        res.cookie("jwt", token, {
-          httpOnly: true,
-          maxAge: maxAge * 1000,
-        });
+        var token = jwt.sign({ id: admin._id }, process.env.jwtSecret, {
+          expiresIn: 86400,
+        }
+      );
         res.status(201).json({
           message: "Admin Successfully Created",
           admin: admin._id,
+          token: token
         });
       })
       .catch((error) =>
@@ -75,18 +72,10 @@ exports.superAdminLogin = async (req, res, next) => {
       } else {
         bcrypt.compare(password, admin.password).then(function (result) {
           if (result) {
-            const maxAge = 3 * 60 * 60;
-            const token = jwt.sign(
-              { id: admin._id },
-              process.env.jwtSecret,
-              {
-                expiresIn: maxAge,
-              }
-            );
-            res.cookie("jwt", token, {
-              httpOnly: true,
-              maxAge: maxAge * 1000,
-            });
+            var token = jwt.sign({ id: admin._id }, process.env.jwtSecret, {
+              expiresIn: 86400,
+            }
+          );
             res.status(201).json({
               message: "Super Admin successfully Logged in",
               admin: admin._id,
@@ -113,9 +102,7 @@ exports.superAdminLogin = async (req, res, next) => {
       })
     }
     try {
-        // console.log(username);
       const admin = await Admin.findOne({ "username" : username });
-      // console.log(admin);
       if (!admin) {
         res.status(400).json({
           message: "Login not successful",
@@ -124,25 +111,17 @@ exports.superAdminLogin = async (req, res, next) => {
       } else {
         bcrypt.compare(password, admin.password).then(function (result) {
           if (result) {
-            const maxAge = 3 * 60 * 60;
-            const token = jwt.sign(
-              { id: admin._id },
-              process.env.jwtSecret,
-              {
-                expiresIn: maxAge,
-              }
-            );
-            res.cookie("jwt", token, {
-              httpOnly: true,
-              maxAge: maxAge * 1000,
-            });
+            var token = jwt.sign({ id: admin._id }, process.env.jwtSecret, {
+              expiresIn: 86400,
+            }
+          );
             Log.create({
               username,
               "role": admin.role
             }).then(log => console.log(log));
             res.status(201).json({
               message: "Admin successfully Logged in",
-              admin: admin._id,
+              admin: admin,
               token: token
             });
           } else {
@@ -158,8 +137,9 @@ exports.superAdminLogin = async (req, res, next) => {
     }
   }
 
-  exports.deleteAdmin = async (req, res, next) => {
-    const { username } = req.body
+  exports.deleteAdmin = async (req, res) => {
+    const { username } = req.query;
+    console.log(username);
     await Admin.findOne({"username": username})
       .then(admin => admin.remove())
       .then(admin =>

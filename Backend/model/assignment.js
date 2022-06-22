@@ -1,20 +1,5 @@
 const Mongoose = require('mongoose');
 
-const UserAssignmentSchema = new Mongoose.Schema({
-    username: {
-      type: String,
-      required: true,
-    },
-    file : {
-      type: String,
-      required: true
-    },
-    date : {
-      type: String,
-      default : new Date().toDateString()
-    }
-  })
-  
 const assignmentSchema = new Mongoose.Schema({
     assignment_date : {
         type: String,

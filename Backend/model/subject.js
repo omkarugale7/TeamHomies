@@ -11,7 +11,7 @@ const subjectSchema = new Mongoose.Schema({
     },
     teacher : {
         type: String,
-        required: true
+        default: ""
     },
     semester : {
         type: Number,

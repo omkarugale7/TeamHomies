@@ -9,6 +9,8 @@ exports.forgotPassword = async (req, res) => {
 
   const { email } = req.body;
 
+  console.log(email);
+
   User.findOne({'email': email}).then((user,err)=>{
     if(user) {
           var payload = {
@@ -28,7 +30,7 @@ exports.forgotPassword = async (req, res) => {
           }
           res.status(201).json({message: "Kindly Check Your Mail For Further Instructions !!!"});
     } else {
-      res.status(400).json({ message: err });
+      res.status(400).json({ message: "User Not Found !!!" });
     }
   })
 };

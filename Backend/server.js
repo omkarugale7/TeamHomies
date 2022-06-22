@@ -35,8 +35,8 @@ const loc = __dirname + '/Auth/Route';
 
 app.use("/", require(loc));
 
-app.get("/admin", adminAuth, (req, res) => res.send("Admin Route"));
-app.get("/student", userAuth, (req, res) => res.send("User Route"));
+app.get("/admin", (req, res) => res.send("Admin Route"));
+app.get("/student", (req, res) => res.send("User Route"));
 
 app.get("/logout", (req, res) => {
   res.cookie("jwt", "", { maxAge: "1" });

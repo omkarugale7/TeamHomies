@@ -1,43 +1,30 @@
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
-exports.adminAuth = (req, res, next) => {
-  const token = req.cookies.jwt
-  if (token) {
-    jwt.verify(token, process.env.jwtSecret, (err, decodedToken) => {
-      if (err) {
-        return res.status(401).json({ message: "Not authorized" })
-      } else {
-        if (decodedToken.role !== "admin" && decodedToken.role !== "super-admin") {
-          return res.status(401).json({ message: "Not authorized" })
-        } else {
-          next()
-        }
-      }
-    })
-  } else {
-    return res
-      .status(401)
-      .json({ message: "Not authorized, token not available" })
-  }
+
+exports.adminTokenVerify = async (req,res, next) => {
+
+  var token = req.headers['x-access-token'];
+  if(!token) return res.status(400).json({message: "No Token Provided !!!"});
+
+  jwt.verify(token, process.env.jwtSecret, (err,decoded) => {
+    if(err) {
+      res.status(400).json({message: "Invalid Token or Token Expired !!!"});
+    }
+    // res.status(200).json({message: "Login SuccessFul !!!"});
+    next();
+  })
 }
 
-exports.userAuth = (req, res, next) => {
-  const token = req.cookies.jwt
-  if (token) {
-    jwt.verify(token, process.env.jwtSecret, (err, decodedToken) => {
-      if (err) {
-        return res.status(401).json({ message: "Not authorized" })
-      } else {
-        if (decodedToken.role !== "Student") {
-          return res.status(401).json({ message: "Not authorized" })
-        } else {
-          next()
-        }
-      }
-    })
-  } else {
-    return res
-      .status(401)
-      .json({ message: "Not authorized, token not available" })
-  }
+exports.tokenVerify = async (req,res, next) => {
+
+  var token = req.headers['x-access-token'];
+  if(!token) return res.status(400).json({message: "No Token Provided !!!"});
+
+  jwt.verify(token, process.env.jwtSecret, (err,decoded) => {
+    if(err) {
+      res.status(400).json({message: "Invalid Token or Token Expired !!!"});
+    }
+    // res.status(200).json({message: "Login SuccessFul !!!"});
+    next();
+  })
 }

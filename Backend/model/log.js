@@ -1,5 +1,7 @@
 const Mongoose = require("mongoose");
 
+
+
 const LogSchema = new Mongoose.Schema({
   username: {
     type: String,
@@ -9,9 +11,13 @@ const LogSchema = new Mongoose.Schema({
     type: String,
     required: true
   },
-  login_time : {
+  login_date : {
     type: String,
     default: new Date().toDateString()
+  },
+  login_time : {
+    type: String,
+    default: `${new Date().toLocaleString()}` 
   }
 })
 

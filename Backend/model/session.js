@@ -5,6 +5,14 @@ const sessionSchema = new Mongoose.Schema({
         type: String,
         default: new Date().toDateString()
     },
+    session_latitude : {
+        type: String,
+        default: "0"
+    },
+    session_longitude : {
+        type: String,
+        default: "0"
+    },
     session_time : {
         type: Date,
         default: Date.now
