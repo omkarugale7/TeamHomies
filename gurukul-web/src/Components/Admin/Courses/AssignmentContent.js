@@ -5,6 +5,7 @@ import axios from "axios";
 function AssignmentContent() {
     console.log(localStorage.getItem('code'));
     const [assignment,getAssignment]= useState({});
+    const [deleteItem, isDeleteItem] = useState(true);
     useEffect(() => {
         const URL = `https://wcegurukul.herokuapp.com/getAssignment?subject=${localStorage.getItem('code')}`;
         axios
@@ -32,6 +33,54 @@ function AssignmentContent() {
             return;
           });
       }, []);
+
+      const DeleteHandler=(values)=>{
+        const URL = `https://wcegurukul.herokuapp.com/removeAssignment?id=${values._id}`;
+  axios
+  .get(
+    URL,
+    {
+      // username: localStorage.getItem("username"),
+      // code: values.code,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": `${localStorage.getItem("token")}`,
+      },
+    }
+  )
+  .then((response) => {
+    if (response.status === 201) {
+      console.log(response.status);
+      alert("Sucessfully deleted");
+      
+    }
+    else{
+      console.log(response.status);
+      alert(response.message);
+    }
+  })
+  .catch((err) => {
+    if (err.message === "Request failed with status code 400") {
+      isDeleteItem(false);
+      alert(err.message);
+      return 0;
+    }
+    if (err.message === "Request failed with status code 404") {
+      isDeleteItem(false);
+      // alert(err.message);
+      return 0;
+    }
+    if (err.message === "Request failed with status code 401") {
+      isDeleteItem(false);
+      // alert(err.message);
+      return 0;
+    }
+    isDeleteItem(false);
+    return 0;
+  });
+    }
     
 const columns=[
     {
@@ -73,8 +122,18 @@ const change=()=>{
       </div>
 
         <MaterialTable
-    editable={{
-      
+     editable={{
+      onRowDelete: (selectedRow)=>
+          new Promise((resolve,reject)=>{
+            console.log(selectedRow);
+            DeleteHandler(selectedRow);
+            if(deleteItem===true){
+              resolve();
+            }
+            else{
+              window.location.reload();
+            }
+          })
         
     }}
     columns={columns}
@@ -91,16 +150,7 @@ const change=()=>{
       addRowPosition: "first",
       actionsColumnIndex: -1,
     }}
-    actions={[
-      {
-        icon: () => <button><a >Open</a></button>,
-        tooltip: "Enter",
-        onClick: (e, data) => {
-          console.log(data.code);
-          window.location.href=`${data.assignment_file}`;
-      },
-      },
-    ]}
+    
   />
         
     </div>

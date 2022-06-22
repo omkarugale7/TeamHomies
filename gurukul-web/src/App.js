@@ -13,6 +13,10 @@ import Subject from './Components/Admin/Courses/Subject';
 import Assignment from './Components/Admin/Courses/Assignment';
 import Notes from './Components/Admin/Courses/Notes';
 import AssignmentUpload from './Components/Admin/Courses/upload-assignment/AssignmentUpload';
+import Notice from './Components/Admin/Notice/Notice';
+import CreateNotice from './Components/Admin/Notice/CreateNotice';
+import NoticeDelete from './Components/Admin/Notice/NoticeDelete';
+import NotesUpload from './Components/Admin/Courses/NotesUpload';
 function App() {
   return (
     <div className="App">
@@ -31,6 +35,10 @@ function App() {
           <Route exact path = "/adminAssignment" element={<Assignment/>}/>
           <Route exact path = "/adminNotes" element={<Notes/>}/>
           <Route exact path = "/assignmentUpload" element={<AssignmentUpload/>}/>
+          <Route exact path = "/notice" element={<Notice/>}/>
+          <Route exact path = "/createNotice" element={<CreateNotice/>}/>
+          <Route exact path = "/noticeDelete" element={<NoticeDelete/>}/>
+          <Route exact path = "/notesUpload" element={<NotesUpload/>}/>
         </Routes>
       </Router>
     </div>

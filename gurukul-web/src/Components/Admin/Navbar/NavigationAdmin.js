@@ -20,13 +20,9 @@ function NavigationAdmin() {
           {
             title:"NOTICE",
             logo:2,
-            id:2
+            id:2,
+            addr:'/notice'
         },
-        {
-            title:"abc",
-            logo:3,
-            id:3
-        }
       ];
 
   return (
