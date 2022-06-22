@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bone_white"
+    tools:context=".view.activities.MarkAttendanceActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mark you Attendance"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:layout_marginTop="24dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ENTER THE PIN : "
+        android:textColor="@color/text_color_primary"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginTop="64dp"
+        android:layout_marginStart="32dp"/>
+
+    <EditText
+        android:id="@+id/et_pin_for_attendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Password"
+        android:text="pin"
+        android:inputType="numberSigned"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/text_color_secondary"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Confirm"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="@color/blue"
+        app:cornerRadius="20dp"/>
+
+
+</LinearLayout>

@@ -25,4 +25,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="semester">Semester:</string>
+    <string name="forum">Forum</string>
+    <string name="profile">Profile</string>
 </resources>

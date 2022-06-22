@@ -77,7 +77,6 @@ class AssignmentUploadActivity : BaseActivity() {
 
             _binding.ivDeleteAssignment.setOnClickListener {
 
-
                 val dialogBuilder = AlertDialog.Builder(this)
                 dialogBuilder.setTitle("Delete Assignment")
                 dialogBuilder.setMessage("Are you sure?")
@@ -88,13 +87,14 @@ class AssignmentUploadActivity : BaseActivity() {
 
                     val pref = getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
                     val username = pref.getString(Constants.LOGGED_IN_USERNAME, "")
+                    val token = pref.getString(Constants.JWT_TOKEN, "")!!
 
                     val _id = assignmentInfo.assignmentID
 
                     deleteAssignmentURL += "?username=${username}&_id=${_id}"
 
 
-                    val sr = StringRequest(Request.Method.DELETE, deleteAssignmentURL, {
+                    val sr : StringRequest = object : StringRequest(Request.Method.DELETE, deleteAssignmentURL, {
                         Toast.makeText(this, "Assignment Deleted Successfully!", Toast.LENGTH_LONG).show()
                         Intent(this, HomeActivity::class.java).also {
                             it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -102,7 +102,13 @@ class AssignmentUploadActivity : BaseActivity() {
                         }
                     },{
                         Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
-                    })
+                    }){
+                        override fun getHeaders(): MutableMap<String, String> {
+                            val hm = HashMap<String, String>()
+                            hm["x-access-token"] = token
+                            return hm
+                        }
+                    }
 
                     val queue = Volley.newRequestQueue(this)
                     queue.add(sr)
@@ -154,6 +160,7 @@ class AssignmentUploadActivity : BaseActivity() {
                             Log.d("PDF URL", pdfURL)
 
                             val registerUrl = "https://wcegurukul.herokuapp.com/uploadAssignment"
+                            val token = getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE).getString(Constants.JWT_TOKEN, "")!!
 
                             //Toast.makeText(this, branch + "  " + graduationYear, Toast.LENGTH_LONG).show()
 
@@ -194,6 +201,7 @@ class AssignmentUploadActivity : BaseActivity() {
                                 override fun getHeaders(): MutableMap<String, String> {
                                     val headers = HashMap<String, String>()
                                     headers["Content-Type"] =  "application/json"
+                                    headers["x-access-token"] = token
                                     return headers
                                 }
 
@@ -213,7 +221,7 @@ class AssignmentUploadActivity : BaseActivity() {
                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                     }
                 } else{
-                    Toast.makeText(this, "URI IS NULL", Toast.LENGTH_LONG).show()
+                    showSnackBar("Please select a file to upload", true)
                 }
             }
 

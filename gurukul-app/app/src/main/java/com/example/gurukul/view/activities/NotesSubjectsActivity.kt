@@ -8,7 +8,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.gurukul.adapters.NotesSubjectAdapter
 import com.example.gurukul.databinding.ActivityNotesSubjectsBinding
-import com.example.gurukul.models.NotesSubject
+import com.example.gurukul.models.Subject
 import com.example.gurukul.utils.Constants
 import org.json.JSONObject
 
@@ -40,13 +40,14 @@ class NotesSubjectsActivity : BaseActivity() {
 
         val pref = getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
         val semester = pref.getInt("semester", 0)
+        val token = pref.getString(Constants.JWT_TOKEN, "")!!
 
 
         getSubjectsURL += "?semester=$semester"
 
         Log.d("Semester", semester.toString())
 
-        val sr  = StringRequest(Request.Method.GET, getSubjectsURL, {
+        val sr : StringRequest = object : StringRequest(Request.Method.GET, getSubjectsURL, {
             hideProgressDialog()
 
             val jsonObject = JSONObject(it)
@@ -56,12 +57,12 @@ class NotesSubjectsActivity : BaseActivity() {
 
             Log.d("First Subject", subjJsonArr[0].toString())
 
-            val subjArr = ArrayList<NotesSubject>()
+            val subjArr = ArrayList<Subject>()
 
             for (i in 0 until subjJsonArr.length())
             {
                 val subj = subjJsonArr[i] as JSONObject
-                subjArr.add(NotesSubject(subj.getString("name"), subj.getString("code"), subj.getString("teacher")))
+                subjArr.add(Subject(subj.getString("name"), subj.getString("code"), subj.getString("teacher")))
             }
 
             val adapter = NotesSubjectAdapter(this, subjArr)
@@ -70,7 +71,13 @@ class NotesSubjectsActivity : BaseActivity() {
 
         }, {
             hideProgressDialog()
-        })
+        }){
+            override fun getHeaders(): MutableMap<String, String> {
+                val hm = HashMap<String, String>()
+                hm["x-access-token"] = token
+                return hm
+            }
+        }
 
         val requestQueue = Volley.newRequestQueue(this)
         requestQueue.add(sr)

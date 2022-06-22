@@ -79,6 +79,8 @@ class LogInActivity : BaseActivity() {
 
         val stringBodyObject = jsonBodyObject.toString()
 
+        showProgressDialog("Please wait...")
+
         val sr : StringRequest = object : StringRequest(
             Method.POST, verifyTokenURL,
             {
@@ -129,7 +131,7 @@ class LogInActivity : BaseActivity() {
         }
 
         val requestQueue = Volley.newRequestQueue(this)
-        //requestQueue.add(sr)
+        requestQueue.add(sr)
 
     }
 
@@ -173,9 +175,11 @@ class LogInActivity : BaseActivity() {
 
                     val userObj = jsonObject.getJSONObject("user")
 
+                    Log.d("DEBUG", jsonObject.toString())
+
                     val sem = userObj.getInt("semester")
 
-
+                    val token = jsonObject.getString("token")
 
                     Log.e("TAG", it)
 
@@ -185,6 +189,7 @@ class LogInActivity : BaseActivity() {
                     editor.putString(Constants.LOGGED_IN_USERNAME, prn)
                     editor.putString(Constants.LOGGED_IN_PASSWORD, password)
                     editor.putInt(Constants.LOGGED_IN_USER_SEM, sem)
+                    editor.putString(Constants.JWT_TOKEN, token)
 
                     editor.apply()
 
@@ -204,8 +209,12 @@ class LogInActivity : BaseActivity() {
                     } else {
                         val err = String(resp.data)
                         Log.d("Network Response", err)
-                        val respJO: JSONObject = JSONObject(err)
-                        showSnackBar(respJO.getString("message"), true)
+                        if (err.isEmpty()){
+                            showSnackBar("Something went wrong!", true)
+                        } else {
+                            val respJO = JSONObject(err)
+                            showSnackBar(respJO.getString("message"), true)
+                        }
                     }
                 }
             ){

@@ -3,24 +3,26 @@ package com.example.gurukul.view.activities
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.gurukul.adapters.AssignmentsSubjectAdapter
+import com.example.gurukul.adapters.AttendanceSubjectAdapter
 import com.example.gurukul.databinding.ActivityAssignmentsSubjectsBinding
+import com.example.gurukul.databinding.ActivityAttendanceSubjectsBinding
 import com.example.gurukul.models.Subject
 import com.example.gurukul.utils.Constants
 import org.json.JSONObject
 
-class AssignmentsSubjectsActivity : BaseActivity() {
+class AttendanceSubjectsActivity : BaseActivity() {
 
-
-    lateinit var _binding : ActivityAssignmentsSubjectsBinding
+    private lateinit var _binding : ActivityAttendanceSubjectsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _binding = ActivityAssignmentsSubjectsBinding.inflate(layoutInflater)
+        _binding = ActivityAttendanceSubjectsBinding.inflate(layoutInflater)
+
+        setContentView(_binding.root)
 
         _binding.btnBackArrow.setOnClickListener {
             onBackPressed()
@@ -28,14 +30,12 @@ class AssignmentsSubjectsActivity : BaseActivity() {
 
         supportActionBar!!.hide()
 
-        setContentView(_binding.root)
-
-        getNotesSubject()
+        getAttendanceSubjects()
 
     }
 
 
-    private fun getNotesSubject()
+    private fun getAttendanceSubjects()
     {
         var getSubjectsURL = "https://wcegurukul.herokuapp.com/subjectList"
 
@@ -50,7 +50,7 @@ class AssignmentsSubjectsActivity : BaseActivity() {
 
         Log.d("Semester", semester.toString())
 
-        val sr : StringRequest = object: StringRequest(Request.Method.GET, getSubjectsURL, {
+        val sr : StringRequest = object: StringRequest(Method.GET, getSubjectsURL, {
             hideProgressDialog()
 
             val jsonObject = JSONObject(it)
@@ -68,7 +68,7 @@ class AssignmentsSubjectsActivity : BaseActivity() {
                 subjArr.add(Subject(subj.getString("name"), subj.getString("code"), subj.getString("teacher")))
             }
 
-            val adapter = AssignmentsSubjectAdapter(this, subjArr)
+            val adapter = AttendanceSubjectAdapter(this, subjArr)
             _binding.rvSubjects.adapter = adapter
             _binding.rvSubjects.layoutManager = LinearLayoutManager(this)
 
@@ -86,5 +86,9 @@ class AssignmentsSubjectsActivity : BaseActivity() {
         requestQueue.add(sr)
 
     }
+
+
+
+
 
 }

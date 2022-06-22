@@ -206,13 +206,16 @@ class SignUpActivity : BaseActivity() {
                     hideProgressDialog()
 
                     val resp = it.networkResponse
-                    val err = String(resp.data)
-                    val respJO = JSONObject(err)
+                    if (resp == null){
+                        showSnackBar(it.toString(), true)
+                    } else {
+                        val err = String(resp.data)
+                        val respJO = JSONObject(err)
 
-                    showSnackBar(respJO.getString("message"), true)
+                        showSnackBar(respJO.getString("message"), true)
 
-                    Log.d("Network Response", err)
-
+                        Log.d("Network Response", err)
+                    }
                 }
             ){
                 override fun getHeaders(): MutableMap<String, String> {

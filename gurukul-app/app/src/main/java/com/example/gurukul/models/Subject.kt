@@ -1,6 +1,6 @@
 package com.example.gurukul.models
 
-data class NotesSubject(
+data class Subject(
     val subjectName: String,
     val subjectCode : String,
     val subjectTeacher : String

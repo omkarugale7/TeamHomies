@@ -6,4 +6,5 @@ object Constants {
     const val LOGGED_IN_USERNAME = "username"
     const val LOGGED_IN_PASSWORD = "password"
     const val LOGGED_IN_USER_SEM = "semester"
+    const val JWT_TOKEN = "token"
 }

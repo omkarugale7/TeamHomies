@@ -9,21 +9,21 @@ import com.example.gurukul.models.Subject
 import com.example.gurukul.view.activities.AssignmentsListActivity
 import com.example.gurukul.view.activities.AttendanceListActivity
 
-class AssignmentsSubjectAdapter(private val activity : Activity, private val subjects_array : ArrayList<Subject>) : RecyclerView.Adapter<AssignmentsSubjectAdapter.AssignmentsSubjectViewHolder>(){
-    class AssignmentsSubjectViewHolder(_binding: ItemNotesSubjectLayoutBinding) : RecyclerView.ViewHolder(_binding.root)
+class AttendanceSubjectAdapter(private val activity : Activity, private val subjects_array : ArrayList<Subject>) : RecyclerView.Adapter<AttendanceSubjectAdapter.AttendanceSubjectViewHolder>(){
+    class AttendanceSubjectViewHolder(_binding: ItemNotesSubjectLayoutBinding) : RecyclerView.ViewHolder(_binding.root)
     {
         val tvSubjectTitle = _binding.tvSubjectTitle
         val tvSubjectCode = _binding.tvSubjectCode
         val tvSubjectTeacher = _binding.tvSubjectTeacher
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssignmentsSubjectViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttendanceSubjectViewHolder{
         val binding = ItemNotesSubjectLayoutBinding.inflate(activity.layoutInflater, parent, false)
 
-        return AssignmentsSubjectViewHolder(binding)
+        return AttendanceSubjectViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AssignmentsSubjectViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AttendanceSubjectViewHolder ,position: Int) {
         val model = subjects_array[position]
         holder.tvSubjectTitle.text = model.subjectName
         holder.tvSubjectCode.text = model.subjectCode
@@ -31,9 +31,10 @@ class AssignmentsSubjectAdapter(private val activity : Activity, private val sub
 
 
         holder.itemView.setOnClickListener {
-            Intent(activity, AssignmentsListActivity::class.java).also {
+            Intent(activity, AttendanceListActivity::class.java).also {
                 it.putExtra("subjectCode", model.subjectCode)
                 activity.startActivity(it)
+                activity.finish()
             }
         }
 

@@ -57,8 +57,12 @@ class AssignmentsListActivity : BaseActivity() {
 
         getAssignmentsURL += "?subject=${subjectCode}"
 
+        val pref = getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
 
-        val sr  = StringRequest(Request.Method.GET, getAssignmentsURL, {
+        val token = pref.getString(Constants.JWT_TOKEN, "")!!
+
+
+        val sr : StringRequest = object : StringRequest(Request.Method.GET, getAssignmentsURL, {
             hideProgressDialog()
 
             val jsonObject = JSONObject(it)
@@ -119,7 +123,13 @@ class AssignmentsListActivity : BaseActivity() {
             Log.d("ERROR" , it.networkResponse.data.toString())
             Toast.makeText(this, "Please try again!", Toast.LENGTH_LONG).show()
             finish()
-        })
+        }){
+            override fun getHeaders(): MutableMap<String, String> {
+                val hm = HashMap<String, String>()
+                hm["x-access-token"] = token
+                return hm
+            }
+        }
 
         val requestQueue = Volley.newRequestQueue(this)
         requestQueue.add(sr)

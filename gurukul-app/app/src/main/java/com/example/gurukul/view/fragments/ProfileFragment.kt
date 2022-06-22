@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.gurukul.databinding.FragmentNotificationsBinding
 
-class NotificationsFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
 

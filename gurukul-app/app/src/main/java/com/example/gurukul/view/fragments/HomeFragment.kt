@@ -1,6 +1,7 @@
 package com.example.gurukul.view.fragments
 
 import android.app.Dialog
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -19,7 +20,10 @@ import com.example.gurukul.adapters.NoticeAdapter
 import com.example.gurukul.databinding.DialogWaitBinding
 import com.example.gurukul.databinding.FragmentHomeBinding
 import com.example.gurukul.models.Notice
+import com.example.gurukul.utils.Constants
 import com.example.gurukul.view.activities.AssignmentsSubjectsActivity
+import com.example.gurukul.view.activities.AttendanceSubjectsActivity
+import com.example.gurukul.view.activities.LogInActivity
 import com.example.gurukul.view.activities.NotesSubjectsActivity
 import org.json.JSONObject
 
@@ -54,6 +58,12 @@ class HomeFragment : Fragment() {
             }
         }
 
+        _binding!!.cardAttendance.setOnClickListener {
+            Intent(requireContext(), AttendanceSubjectsActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
 
         getNotices()
 
@@ -67,7 +77,20 @@ class HomeFragment : Fragment() {
         showProgressDialog("Please wait...")
         val getNoticesURL = "https://wcegurukul.herokuapp.com/getNotice"
 
-        val sr = StringRequest(Request.Method.GET, getNoticesURL, {
+
+        val pref = activity?.getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)!!
+
+        val token = pref.getString(Constants.JWT_TOKEN, "")!!
+
+        if (token.isEmpty()){
+            Intent(requireContext(), LogInActivity::class.java).also {
+                it.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(it)
+                return
+            }
+        }
+
+        val sr : StringRequest = object: StringRequest(Request.Method.GET, getNoticesURL, {
             Log.d("NOTICES", it.toString())
 
             val jsonObj = JSONObject(it)
@@ -85,7 +108,13 @@ class HomeFragment : Fragment() {
         }, {
             hideProgressDialog()
             Log.d("NO Notice fetched", it.toString())
-        })
+        }){
+            override fun getHeaders(): MutableMap<String, String> {
+                val hm = HashMap<String, String>()
+                hm["x-access-token"] = token
+                return hm
+            }
+        }
 
         val queue = Volley.newRequestQueue(requireContext())
         queue.add(sr)
@@ -96,7 +125,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
 
 

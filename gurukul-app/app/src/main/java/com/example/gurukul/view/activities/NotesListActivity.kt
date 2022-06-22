@@ -59,6 +59,7 @@ open class NotesListActivity : BaseActivity() {
 
         val pref = getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
         val semester = pref.getInt("semester", 0)
+        val token = pref.getString(Constants.JWT_TOKEN, "")!!
 
         val subjectCode = intent.getStringExtra("subjectCode")
 
@@ -66,7 +67,7 @@ open class NotesListActivity : BaseActivity() {
 
         Log.d("Semester", semester.toString())
 
-        val sr  = StringRequest(Request.Method.GET, getNotesURL, {
+        val sr : StringRequest = object : StringRequest(Request.Method.GET, getNotesURL, {
             hideProgressDialog()
 
             val jsonObject = JSONObject(it)
@@ -94,7 +95,13 @@ open class NotesListActivity : BaseActivity() {
             hideProgressDialog()
             Toast.makeText(this, "Please try again!", Toast.LENGTH_LONG).show()
             finish()
-        })
+        }){
+            override fun getHeaders(): MutableMap<String, String> {
+                val hm = HashMap<String, String>()
+                hm["x-access-token"] = token
+                return hm
+            }
+        }
 
         val requestQueue = Volley.newRequestQueue(this)
         requestQueue.add(sr)
