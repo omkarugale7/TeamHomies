@@ -7,7 +7,8 @@ a) Student Login - Students Can Upload their Assignments, Mark their Attendance,
 b) Admin Login - Admins are our teachers that has attendance feature in the App
 c) Guest Login - In this section Guests can view college Details and will be  provided with a Chat Forum where they can ask and resolve doubts and interact with other Guests and Students
 
-App Link : https://drive.google.com/file/d/1qQWaD27eWhhPK-IcgfMvrhyX51wg3Q9o/view?usp=sharing
+App Link : https://drive.google.com/drive/folders/1Ujk4Znb_sX9-pqH7dZeF2OAXMjfSV3yU
+(Initial Link Was Not Having Permission, So We Uploaded Again)
 
 Website or Portal has 2 Modes
 a) Admin Login - From This Section Admins i.e our Teachers Can Post Assignments, Add Notes, Write Notices View Students Progress and Data. 
