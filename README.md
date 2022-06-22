@@ -23,7 +23,7 @@ also user can modify the difficulty levels as they desire.
 this is a one stop solution desired to easify and solve all the problems of college system. we have added as many features as we could in 4 days. and if given chance we can add many such helpful and out of the box features.
 
 
-
+USING WHATSAPP BOT - to use whatsapp bot run the index.js file in WhatsappWebBot folder. to run downlaod node packages. and use node index,js command to run the file. after few seconds a qr code will appear on the terminal, scan it and you're good to go. your mobile no. is now the not. any can send the commands and get replies for that untill the terminal is running. commands that can be used are- 'hi' , 'send me a motivational quote','what is your name',;send me a coding problem',send me a coding problem difficulty - medium' , etc. also the bot sends assignment reminder to those who have pending assignments before 24hrs , 18hrs, 1hr with name and subject of the assignment spceified. we are also working on a feature where message will have a link included which will directly take user into app to submit the assignment. also the bot is hosted on heroku but the qr code is scanned by us so it can be changed whenever wanted.
 
 
 ABOUT WEBSITE:
