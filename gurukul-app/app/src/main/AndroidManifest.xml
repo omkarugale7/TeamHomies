@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gurukul">
         <activity
+            android:name=".view.activities.GuestLogin"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.DocumentsListActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.MarkAttendanceActivity"
             android:exported="false" />
         <activity

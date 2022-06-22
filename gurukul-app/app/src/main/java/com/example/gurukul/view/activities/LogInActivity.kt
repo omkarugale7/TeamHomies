@@ -39,11 +39,6 @@ class LogInActivity : BaseActivity() {
             logIn()
         }
 
-        _binding.btnLoginAsGuest.setOnClickListener {
-            Intent(this, HomeActivity::class.java).also {
-                startActivity(it)
-            }
-        }
 
         _binding.tvForgotPassword.setOnClickListener {
             Intent(this, ForgotPassword::class.java).also {
@@ -188,8 +183,12 @@ class LogInActivity : BaseActivity() {
                     val editor = pref.edit()
                     editor.putString(Constants.LOGGED_IN_USERNAME, prn)
                     editor.putString(Constants.LOGGED_IN_PASSWORD, password)
-                    editor.putInt(Constants.LOGGED_IN_USER_SEM, sem)
+                    editor.putString(Constants.SEMESTER, sem.toString())
                     editor.putString(Constants.JWT_TOKEN, token)
+                    editor.putString(Constants.NAME, userObj.getString("name"))
+                    editor.putString(Constants.EMAIL, userObj.getString("email"))
+                    editor.putString(Constants.MOBILE, userObj.getString("phone"))
+                    editor.putString(Constants.BRANCH, userObj.getString("branch"))
 
                     editor.apply()
 

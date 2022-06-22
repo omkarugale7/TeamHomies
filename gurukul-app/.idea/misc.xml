@@ -11,7 +11,9 @@
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_assignments_subjects.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_attendance_list.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_attendance_subjects.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_documents_list.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_forgot_password.xml" value="0.22239583333333332" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_guest_login.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_home.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_log_in.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
@@ -23,9 +25,16 @@
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_sign_up.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/activity_verify_email.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/dialog_wait.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/fragment_base.xml" value="0.22239583333333332" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/fragment_forum.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/fragment_home.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/fragment_profile.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_assigment_layout.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_attendance_layout.xml" value="0.4" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_document_layout.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_layout_recieved.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_message_layout.xml" value="0.23645833333333333" />
+        <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_message_sent_layout.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_notes.xml" value="0.2297872340425532" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_notes_subject_layout.xml" value="0.23645833333333333" />
         <entry key="..\:/TeamHomies/gurukul-app/app/src/main/res/layout/item_notice_layout.xml" value="0.23645833333333333" />
