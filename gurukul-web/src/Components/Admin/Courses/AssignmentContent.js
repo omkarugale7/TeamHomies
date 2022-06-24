@@ -98,7 +98,7 @@ const columns=[
     {
         field:"assignment_desc",
         title:'Description',
-        lookup:{'':'null'}
+        emtyValue:'null'
     },
     {
         field:"assignment_date",

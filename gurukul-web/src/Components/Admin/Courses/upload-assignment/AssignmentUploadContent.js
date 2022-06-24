@@ -6,104 +6,137 @@ import "../DropDown/DropDown.css";
 import "./UploadContent.css";
 import { ImageConfig } from "../config/ImageConfig";
 import uploadImg from "../../../Images/cloud-upload-regular-240.png";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
-import {storage }from "../../../Admin/Firebase";
+import FileUpload from "./FileUpload";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios"; 
 const AssignmentUploadContent = (props) => {
-  const [progresspercent, setProgresspercent] = useState(0);
-  const [imgUrl, setImgUrl] = useState(null);
-//firebase
-const handleFile=()=>{
-  const file = fileList[0];
-  const fileName = file.name;
-  console.log(file);
-  if (!file) return;
-  const storageRef = ref(storage, `files/${fileName}`);
-  const uploadTask = uploadBytesResumable(storageRef, file);
-  uploadTask.on("state_changed",
-      (snapshot) => {
-        const progress =
-          Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-        setProgresspercent(progress);
-      },
-      (error) => {
-        alert(error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setImgUrl(downloadURL)
-          localStorage.setItem('file',imgUrl);
-          alert(downloadURL);
-        });
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      desc: "",
+      due_date:"",
+      number:"",
+      subject_name:"",
+    },
+    validationSchema: Yup.object({
+      title: Yup.string().required("Title is required*"),
+      due_date: Yup.string().required("Due Date is required*"),
+      number: Yup.string().required("Assignment Number  is required*"),
+      subject_name: Yup.string().required("Subject Name is required*"),
+      
+    }),
+    onSubmit: (values) => {
+      console.log(values);
+      LoginHandler(values);
+    },
+  });
+
+  const LoginHandler = (values) => {
+    const time = new Date(values.due_date).getTime();
+    const URL = "https://wcegurukul.herokuapp.com/createAssignment";
+    axios
+      .post(
+        URL,
+        {
+         title: values.title,
+          desc: values.desc,
+          due_date: values.due_date,
+          due_time: time,
+          teacher: localStorage.getItem('username'),
+          number: values.number,
+          subject: localStorage.getItem('code'),
+          subject_name: values.subject_name,
+          file: localStorage.getItem('url'),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": `${localStorage.getItem('token')}`,
+          },
+        }
+      )
+      .then((response) => {
+        if (response.status === 201) {
+          const data = response.data;
+         alert("Succesfully Created Assignment");
+         window.location.href='/adminAssignment';
+        }
       })
- 
-
-
-}
-// console.log(imgUrl);
-
-
-
-
-  //drag-drop
-  const wrapperRef = useRef(null);
-
-  const [fileList, setFileList] = useState([]);
-
-  const onDragEnter = () => wrapperRef.current.classList.add("dragover");
-
-  const onDragLeave = () => wrapperRef.current.classList.remove("dragover");
-
-  const onDrop = () => wrapperRef.current.classList.remove("dragover");
-
-  const onFileDrop = (e) => {
-    const newFile = e.target.files[0];
-    if (newFile) {
-      const updatedList = [...fileList, newFile];
-      setFileList(updatedList);
-      props.onFileChange(updatedList);
-    }
+      .catch((err) => {
+        if (err.message === "Request failed with status code 400") {
+         
+          alert("Bad Request");
+          return 0;
+        }
+        if (err.message === "Request failed with status code 404") {
+          
+          alert("You have entered an invalid username or password");
+          return 0;
+        }
+        if (err.message === "Request failed with status code 401") {
+          
+          return 0;
+        }
+        
+        return 0;
+      });
+    values.desc='';
+    values.title='';
+    values.due_date='';
+    values.subject_name='';
+    values.number='';
   };
 
-  const fileRemove = (file) => {
-    const updatedList = [...fileList];
-    updatedList.splice(fileList.indexOf(file), 1);
-    setFileList(updatedList);
-    props.onFileChange(updatedList);
-  };
-  console.log(fileList[0]);
   return (
     <div className="create_form upload">
       <div>
         <h2>Upload Assignment</h2>
       </div>
-      <form>
+      <form onSubmit={(e) => formik.handleSubmit(e)}>
         <div className="row">
           <label className="create_label">Assignment Number:</label>
           <div className="col-md-5 col-sm-12 outer_create">
             <input
-              id="assignment_number"
-              name="assignment_number"
+              id="number"
+              name="number"
               type="number"
               className="create_input"
               placeholder="Assignment Number"
+              value={formik.values.number}
+                onBlur={formik.handleBlur}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                }}
             />
             <span class="focus-border">
               <i></i>
             </span>
+            {formik.touched.number && formik.errors.number ? (
+                <p className="error_login">{formik.errors.number}</p>
+              ) : null}
           </div>
 
           <label className="create_label">Title:</label>
           <div className=" col-md-5 col-sm-12 outer_create">
             <input
-              id="assignment_title"
-              name="assignment_title"
+              id="title"
+              name="title"
               type="text"
               className="create_input"
               placeholder="Title"
+              value={formik.values.title}
+                onBlur={formik.handleBlur}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                }}
             />
             <span class="focus-border">
               <i></i>
             </span>
+            {formik.touched.title && formik.errors.title ? (
+                <p className="error_login">{formik.errors.title}</p>
+              ) : null}
           </div>
         </div>
 
@@ -111,29 +144,43 @@ const handleFile=()=>{
           <label className="create_label">Assignment Desc:</label>
           <div className="col-md-5 col-sm-12 outer_create">
             <input
-              id="assignment_desc"
-              name="assignment_desc"
+              id="desc"
+              name="desc"
               type="text"
               className="create_input"
               placeholder="Assignment Description"
+              value={formik.values.desc}
+                onBlur={formik.handleBlur}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                }}
             />
             <span class="focus-border">
               <i></i>
             </span>
+            
           </div>
 
           <label className="create_label">Subject:</label>
           <div className=" col-md-5 col-sm-12 outer_create">
             <input
-              id="assignment_subject"
-              name="assignment_subject"
+              id="subject_name"
+              name="subject_name"
               type="text"
               className="create_input"
               placeholder="Subject"
+              value={formik.values.subject_name}
+                onBlur={formik.handleBlur}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                }}
             />
             <span class="focus-border">
               <i></i>
             </span>
+            {formik.touched.subject_name && formik.errors.subject_name ? (
+                <p className="error_login">{formik.errors.subject_name}</p>
+              ) : null}
           </div>
         </div>
 
@@ -141,61 +188,30 @@ const handleFile=()=>{
           <label className="create_label">Assignment Due Date:</label>
           <div className="col-md-5 col-sm-12 outer_create">
             <input
-              id="assignment_due_date"
-              name="assignment_number"
+              id="due_date"
+              name="due_date"
               type="date"
               className="create_input"
               placeholder="Assignment Number"
+              value={formik.values.due_date}
+                onBlur={formik.handleBlur}
+                onChange={(e) => {
+                  formik.handleChange(e);
+                }}
             />
             <span class="focus-border">
               <i></i>
             </span>
+            {formik.touched.due_date && formik.errors.due_date ? (
+                <p className="error_login">{formik.errors.due_date}</p>
+              ) : null}
           </div>
 
           <div>
-            <div
-              ref={wrapperRef}
-              className="drop-file-input"
-              onDragEnter={onDragEnter}
-              onDragLeave={onDragLeave}
-              onDrop={onDrop}
-            >
-              <div className="drop-file-input__label">
-                <img src={uploadImg} alt="" />
-                <p>Drag & Drop your files here</p>
-              </div>
-              <input type="file" value="" onChange={onFileDrop} />
-              
-            </div>
-            {fileList.length > 0 ? (
-              <div className="drop-file-preview">
-                <p className="drop-file-preview__title">Ready to upload</p>
-                {fileList.map((item, index) => (
-                  <div key={index} className="drop-file-preview__item">
-                    <img
-                      src={
-                        ImageConfig[item.type.split("/")[1]] ||
-                        ImageConfig["default"]
-                      }
-                      alt=""
-                    />
-                    <div className="drop-file-preview__item__info">
-                      <p>{item.name}</p>
-                      <p>{item.size}B</p>
-                    </div>
-                    <span
-                      className="drop-file-preview__item__del"
-                      onClick={() => fileRemove(item)}
-                    >
-                      x
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ) : null}
+          <FileUpload/>
           </div>
         </div>
-        <button type="submit" className="btn-primary w-80 ass-sub btn-lg" onClick={handleFile}>
+        <button type="submit" className="btn-primary w-80 ass-sub btn-lg">
           Create
         </button>
       </form>

@@ -85,7 +85,7 @@ function SuperAdmin() {
         <div className="col-md-4 col-sm-12 register_container">
           <FaUserGraduate size={40} />
           <h3 className="regHead">Registered Alumni:</h3>
-          <h2>999</h2>
+          <h2>7</h2>
         </div>
       </div>
 

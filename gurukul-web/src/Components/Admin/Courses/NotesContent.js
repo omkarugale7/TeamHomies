@@ -100,7 +100,8 @@ axios
       {
         field:"desc",
         title:"Description",
-          lookup:{'':'null'}
+        emtyValue:'null'
+          // lookup:{'':'null'}
       },
       // {
       //   field:"file",
