@@ -1,36 +1,31 @@
-Welcome To Gurukul !!!
+# **Gurukul**
 
-	We are Team Homies with our Project WCE Gurukul !!! It is an
-application and a portal which is a one stop solution for all problems of Students. It provides multiple functionalities as follows-
-our app has modes 3 Modes
-a) Student Login - Students Can Upload their Assignments, Mark their Attendance, Download Notes and Documents and a Forum for interaction with other students 
-b) Admin Login - Admins are our teachers that has attendance feature in the App
-c) Guest Login - In this section Guests can view college Details and will be  provided with a Chat Forum where they can ask and resolve doubts and interact with other Guests and Students
+**Project Description**:</br>
+ It is an one stop solution for students of WCE, Sangli which solves multiple problems like uploading assignments, dowloading 
+ notes and documents, marking the attendance, etc. It also has a forum where students can interact with other students in case
+ they have some doubt about the college.
+ For the students, we have created an android application for students and a website for admins where they can assign assignments,
+ upload notes, documents, etc.
 
-App Link : https://drive.google.com/drive/folders/1Ujk4Znb_sX9-pqH7dZeF2OAXMjfSV3yU
-(Initial Link Was Not Having Permission, So We Uploaded Again)
+ We have also created a whatsapp bot for reminding the students about the assignments submission. It can also provide some coding
+ problems if student asks for it.
 
-Website or Portal has 2 Modes
-a) Admin Login - From This Section Admins i.e our Teachers Can Post Assignments, Add Notes, Write Notices View Students Progress and Data. 
-b) Super Admin Login - This post is to monitor all the Admins, this will be given to main handler of the portal, he/she can add or delete admins, keep a watch on all activities, have a log containing log in time of all admins and students.
+ For the attendance, we have used the location of students so that only those student who are present inside class can give attendance using
+ the pin set by teacher. If teacher is taking online session, he can choose not to add location in the session.
 
-We have added 2 Out Of The Box Features
-a) The Attendance Feature has a very Unique Feature, Using Google Map API we have created a system in which attendance will be marked on the basis of geolocation. Admins can create a virtual radius and the students with their devices under the radius can only mark their attendance.
-b) We Have Created a WhatsApp ChatBot. the bot is so systematically designed and matched with the database schema. it supports various features, some of them being it sends reminder to the students who have pending assignments. the reminder is send before 24 hours, before 18 hours and before 1 hour of the submission time.
-the bot also sends recently updates notices by admins to everyone.
-it can send daily quotes to desired users.
-upon asking it also sends programming questions from different websites
-also user can modify the difficulty levels as they desire.
-this is a one stop solution desired to easify and solve all the problems of college system. we have added as many features as we could in 4 days. and if given chance we can add many such helpful and out of the box features.
+ 
+ ![Snapshots](https://firebasestorage.googleapis.com/v0/b/gurukul-5a194.appspot.com/o/WhatsApp%20Image%202022-06-25%20at%207.30.03%20PM.jpeg?alt=media&token=8127e5cf-1133-4599-8399-8bf64c127bc3)
 
+Functionality and concepts used:
+ * **Libraries**: Glide for displaying images, volley for making network requests
+ * **Layouts**: Constraint Layout, Linear Layout, Relative Layout, CardView
+ * **Recycler View**: To display subject list, assignments, notes, documents list Recycler View is used
+ * **SharedPreference**: To store authentication token, username of students in local storage
+ * **Firebase Storage** : For uploading the assignments, notes, documents
+ * **Fragments** : There is a bottom navigation and user can navigate between different fragments like profile, home and Forum. 
+       For navigating in different fragments, we have used navigation component
 
-USING WHATSAPP BOT - We will be hosting our Bot online making it available to use to everybody. Till then to use whatsapp bot run the index.js file in WhatsappWebBot folder. to run downlaod node packages. and use node index,js command to run the file. after few seconds a qr code will appear on the terminal, scan it and you're good to go. your mobile no. is now the not. any can send the commands and get replies for that untill the terminal is running. commands that can be used are- 'hi' , 'send me a motivational quote','what is your name',;send me a coding problem',send me a coding problem difficulty - medium' , etc. also the bot sends assignment reminder to those who have pending assignments before 24hrs , 18hrs, 1hr with name and subject of the assignment spceified. we are also working on a feature where message will have a link included which will directly take user into app to submit the assignment. also the bot is hosted on heroku but the qr code is scanned by us so it can be changed whenever wanted.
-
-
-ABOUT WEBSITE:
-1.Clone this repository
-2.Open Gurukul-web directory in your terminal
-3.run "npm i" command
-4.run "npm start" command to start the admin portal
-5.superadmin credentials: username:'wcegurukul',password : 'wcegurukul'
-6.You can create a admin account from super admin.
+How to use our project : 
+* **App Link** : https://drive.google.com/drive/folders/1Ujk4Znb_sX9-pqH7dZeF2OAXMjfSV3yU </br>
+* **WEBSITE**: 1.Clone this repository 2.Open Gurukul-web directory in your terminal 3.run "npm i" command 4.run "npm start" command to start the admin portal 5.superadmin credentials: username:'wcegurukul',password : 'wcegurukul' 6.You can create a admin account from super admin.</br>
+* **WHATSAPP BOT** : We will be hosting our Bot online making it available to use to everybody. Till then to use whatsapp bot run the index.js file in WhatsappWebBot folder. to run downlaod node packages. and use node index,js command to run the file. after few seconds a qr code will appear on the terminal, scan it and you're good to go. your mobile no. is now the not. any can send the commands and get replies for that untill the terminal is running. commands that can be used are- 'hi' , 'send me a motivational quote','what is your name',;send me a coding problem',send me a coding problem difficulty - medium' , etc. also the bot sends assignment reminder to those who have pending assignments before 24hrs , 18hrs, 1hr with name and subject of the assignment spceified. we are also working on a feature where message will have a link included which will directly take user into app to submit the assignment. also the bot is hosted on heroku but the qr code is scanned by us so it can be changed whenever wanted.
