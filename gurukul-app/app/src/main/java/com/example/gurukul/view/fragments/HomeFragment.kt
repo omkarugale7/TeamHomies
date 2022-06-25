@@ -67,6 +67,8 @@ class HomeFragment : BaseFragment() {
             }
         }
 
+        val pref = requireActivity().getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
+        if (pref.getString(Constants.LOGGED_IN_PASSWORD, "") != "")
         getNotices()
 
         return root
@@ -76,7 +78,7 @@ class HomeFragment : BaseFragment() {
     {
         val notices = ArrayList<Notice>()
 
-        showProgressDialog("Please wait...")
+        //showProgressDialog("Please wait...")
         val getNoticesURL = "https://wcegurukul.herokuapp.com/getNotice"
 
 
@@ -102,13 +104,13 @@ class HomeFragment : BaseFragment() {
                 val obj = jsonArr[i] as JSONObject
                 notices.add(Notice(obj.getString("title"), obj.getString("desc"), obj.getString("img")))
             }
-            hideProgressDialog()
+            //hideProgressDialog()
             val adapter = NoticeAdapter(this, notices)
             _binding?.rvNotices?.adapter = adapter
             _binding?.rvNotices?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         }, {
-            hideProgressDialog()
+            //hideProgressDialog()
             Log.d("NO Notice fetched", it.toString())
         }){
             override fun getHeaders(): MutableMap<String, String> {

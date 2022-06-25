@@ -36,7 +36,7 @@ class ProfileFragment : Fragment() {
         _binding!!.etPrn.setText(pref.getString(Constants.LOGGED_IN_USERNAME, ""))
         _binding!!.etEmail.setText(pref.getString(Constants.EMAIL, ""))
         _binding!!.etMobile.setText(pref.getString(Constants.MOBILE, ""))
-        _binding!!.etSemester.setText(pref.getString(Constants.SEMESTER, ""))
+        _binding!!.etSemester.setText(pref.getInt(Constants.LOGGED_IN_USER_SEM,0).toString())
         _binding!!.etBranch.setText(pref.getString(Constants.BRANCH, ""))
 
 

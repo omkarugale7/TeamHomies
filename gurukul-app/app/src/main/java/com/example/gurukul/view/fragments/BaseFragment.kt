@@ -38,6 +38,13 @@ open class BaseFragment : Fragment() {
         mProgressDialog.dismiss()
     }
 
+    fun isProgressDialogInitialized() : Boolean
+    {
+        return this::mProgressDialog.isInitialized
+    }
+
+
+
     fun showSnackBar(message: String, errorMessage: Boolean)
     {
         val snackBar = Snackbar.make(requireActivity().findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
