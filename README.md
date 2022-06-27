@@ -14,7 +14,9 @@
  the pin set by teacher. If teacher is taking online session, he can choose not to add location in the session.
 
  
- ![Snapshots](https://firebasestorage.googleapis.com/v0/b/gurukul-5a194.appspot.com/o/WhatsApp%20Image%202022-06-25%20at%207.30.03%20PM.jpeg?alt=media&token=8127e5cf-1133-4599-8399-8bf64c127bc3)
+ ![Snapshots](https://firebasestorage.googleapis.com/v0/b/gurukul-5a194.appspot.com/o/WhatsApp%20Image%202022-06-25%20at%207.30.03%20PM.jpeg?alt=media&token=8127e5cf-1133-4599-8399-8bf64c127bc3)![Screenshot from 2022-06-27 12-48-39](https://user-images.githubusercontent.com/84059221/175884087-f008613c-3ff1-4a6a-bcd1-390b20ddae2a.png)![Screenshot from 2022-06-27 12-48-59](https://user-images.githubusercontent.com/84059221/175884165-1b18a9ce-269d-4f0c-a2b3-a159e7465b4a.png)
+
+
 
 Functionality and concepts used:
  * **Libraries**: Glide for displaying images, volley for making network requests
