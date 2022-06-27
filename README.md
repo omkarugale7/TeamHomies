@@ -15,8 +15,14 @@
 
  
  ![Snapshots](https://firebasestorage.googleapis.com/v0/b/gurukul-5a194.appspot.com/o/WhatsApp%20Image%202022-06-25%20at%207.30.03%20PM.jpeg?alt=media&token=8127e5cf-1133-4599-8399-8bf64c127bc3)![Screenshot from 2022-06-27 12-48-39](https://user-images.githubusercontent.com/84059221/175884087-f008613c-3ff1-4a6a-bcd1-390b20ddae2a.png)![Screenshot from 2022-06-27 12-48-59](https://user-images.githubusercontent.com/84059221/175884165-1b18a9ce-269d-4f0c-a2b3-a159e7465b4a.png)![Screenshot from 2022-06-27 13-01-55](https://user-images.githubusercontent.com/84059221/175884781-da257d31-475c-4437-903c-8a36389bbe4f.png)![Screenshot from 20![Screenshot from 2022-06-27 13-02-13](https://user-images.githubusercontent.com/84059221/175885029-0d373757-e44b-4021-9d1a-1800fe833b0f.png)
-22-06-27 13-02-02](https://user-images.githubusercontent.com/84059221/175884818-07700b9d-0ea6-423d-b8eb-5f66e16884cf.png)![Uploading Screenshot from 2022-06-27 13-02-13.png…]()
+22-06-27 13-02-02](https://user-images.githubusercontent.com/84059221/175884818-07700b9d-0ea6-423d-b8eb-5f66e16884cf.png)!![Screenshot from 2022-06-27 13-08-03](https://user-images.githubusercontent.com/84059221/175886213-a041ea7e-5631-4ca7-b85e-12bc70c7f130.png)
+![Screenshot from 2022-06-27 13-0![Screenshot from 2022-06-27 13-08-17](https://user-images.githubusercontent.com/84059221/175886266-1f3dca16-2f08-409b-afcb-9918e5ffd7db.png)
+8-12](https://user-images.githubusercontent.com/84059221/175886248-41dd3fc5-b1a8-4597-9434-dd2b0dda5afe.png)
+![Screenshot from 2022-06-27 13-08-26](https://user-images.github![Screenshot from 2022-06-27 13-08-35](https://user-images.githubusercontent.com/84059221/175886353-cd1defc8-22ea-4b4c-8b5b-6d3d365e5dd0.png)
+usercontent.com/84059221/175886315-4c907761-00ee-4460-9029-ab842652677d.png)
+![Screenshot from 2022-06-27 13-08-40](https://user-images.githubusercontent.com/84059221/175886431-1bce14f3-a2fb-47f4-a42e-030d9a73a3c2.png)
 
+![Screenshot from 2022-06-27 13-08-47](https://user-images.githubusercontent.com/84059221/175886465-e139f695-e078-4180-9c7e-723fd4c1e16f.png)
 
 
 
