@@ -21,15 +21,12 @@ import com.example.gurukul.databinding.DialogWaitBinding
 import com.example.gurukul.databinding.FragmentHomeBinding
 import com.example.gurukul.models.Notice
 import com.example.gurukul.utils.Constants
-import com.example.gurukul.view.activities.AssignmentsSubjectsActivity
-import com.example.gurukul.view.activities.AttendanceSubjectsActivity
-import com.example.gurukul.view.activities.LogInActivity
-import com.example.gurukul.view.activities.NotesSubjectsActivity
+import com.example.gurukul.view.activities.*
 import org.json.JSONObject
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
-    lateinit var mProgressDialog : Dialog
+
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
@@ -64,6 +61,11 @@ class HomeFragment : Fragment() {
             }
         }
 
+        _binding!!.cardDocuments.setOnClickListener {
+            Intent(requireContext(), DocumentsListActivity::class.java).also {
+                startActivity(it)
+            }
+        }
 
         getNotices()
 
@@ -128,27 +130,7 @@ class HomeFragment : Fragment() {
 
 
 
-    fun showProgressDialog(text: String)
-    {
-        mProgressDialog = Dialog(requireContext())
 
-        val _binding = DialogWaitBinding.inflate(layoutInflater)
-
-        mProgressDialog.setContentView(_binding.root)
-
-        _binding.tvProgressText.text = text
-
-        mProgressDialog.setCancelable(false)
-        mProgressDialog.setCanceledOnTouchOutside(false)
-
-        mProgressDialog.show()
-
-    }
-
-    fun hideProgressDialog()
-    {
-        mProgressDialog.dismiss()
-    }
 
 
 

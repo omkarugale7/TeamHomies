@@ -4,6 +4,7 @@ import { FaUserAlt, FaUserGraduate } from "react-icons/fa";
 import { GiTeacher } from "react-icons/gi";
 import { GrEdit } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
+import { MdFileUpload } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Gurukul from "../Images/gurukul.png";
 import MaterialTable from "material-table";
@@ -102,10 +103,13 @@ function SuperAdmin() {
           <MdDelete size={20} />
           <h5>Delete</h5>
         </a>
-        {/* <a href='/forgotPassword' className='col-md-6 delete_reg'>
-             <MdDelete size={20}/><h5>Delete</h5>
-            </a> */}
       </div>
+      <div className="edit_reg container-fluid">
+      <a class="upload_doc  btn-border-4 col-md-6" href="/uploadDoc">
+          <MdFileUpload size={20} />
+          <h5>Upload Document</h5>
+        </a>
+        </div>
       <div className="container-fluid w-75 log_table">
         <MaterialTable 
         columns={columns} 

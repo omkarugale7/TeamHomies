@@ -70,6 +70,30 @@
     color: black;
     text-decoration: none;
 }
+.upload_doc{
+    position: relative;
+        display: inline-block;
+        margin: 15px;
+        margin-left: 37%;
+        padding: 12px 27px;
+        text-align: center;
+        font-size: 16px;
+        width: 20%;
+        min-width: fit-content;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #4d4d4d;
+        border-radius: 12px;
+        background: #45eadf;
+        border: 3px solid #999999;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        -webkit-transition: ease-out 0.5s;
+        -moz-transition: ease-out 0.5s
+}
+.up_doc:hover{
+    color: black;
+}
 .delete_reg:hover{
     color: black;
 }
@@ -100,6 +124,45 @@
         -webkit-transition: ease-out 0.5s;
         -moz-transition: ease-out 0.5s
 }
+
+
+.upload_doc.btn-border-4::after,
+.upload_doc.btn-border-4::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    transition: .5s;
+}
+
+.upload_doc.btn-border-4::after {
+    top: -9px;
+    left: -9px;
+    border-top: 3px solid transparent;
+    border-left: 3px solid transparent;
+}
+
+.upload_doc.btn-border-4::before {
+    bottom: -9px;
+    right: -9px;
+    border-bottom: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+
+.upload_doc.btn-border-4:hover {
+    color: #222222;
+}
+
+.upload_doc.btn-border-4:hover::after,
+.upload_doc.btn-border-4:hover::before {
+    width: calc(100% + 15px);
+    height: calc(100% + 15px);
+    border-color: #222222;
+}
+
+
+
+
 .btn_del.btn-border-4::after,
 .btn_del.btn-border-4::before {
     position: absolute;

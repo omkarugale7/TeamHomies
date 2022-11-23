@@ -36,7 +36,7 @@ class AttendanceListAdapter (val activity: AttendanceListActivity,
             holder.tvSubject.setTextColor(activity.resources.getColor(R.color.text_color_primary))
             holder.tvTeacher.setTextColor(activity.resources.getColor(R.color.text_color_primary))
         } else if (!model.session_state){
-            Toast.makeText(activity, "Session ended", Toast.LENGTH_LONG).show()
+            //Toast.makeText(activity, "Session ended", Toast.LENGTH_LONG).show()
             holder.cardView.backgroundTintList = activity.resources.getColorStateList(android.R.color.holo_red_light)
             holder.tvSubject.setTextColor(activity.resources.getColor(R.color.text_color_primary))
             holder.tvTeacher.setTextColor(activity.resources.getColor(R.color.text_color_primary))

@@ -17,6 +17,7 @@ import Notice from './Components/Admin/Notice/Notice';
 import CreateNotice from './Components/Admin/Notice/CreateNotice';
 import NoticeDelete from './Components/Admin/Notice/NoticeDelete';
 import NotesUpload from './Components/Admin/Courses/NotesUpload';
+import UploadDoc from './Components/superAdmin/UploadDoc';
 function App() {
   return (
     <div className="App">
@@ -39,6 +40,7 @@ function App() {
           <Route exact path = "/createNotice" element={<CreateNotice/>}/>
           <Route exact path = "/noticeDelete" element={<NoticeDelete/>}/>
           <Route exact path = "/notesUpload" element={<NotesUpload/>}/>
+          <Route exact path = "/uploadDoc" element={<UploadDoc/>}/>
         </Routes>
       </Router>
     </div>
