@@ -35,6 +35,13 @@ class LogInActivity : BaseActivity() {
             }
         }
 
+        _binding.btnLoginAsGuest.setOnClickListener {
+            Intent(this, GuestLogin::class.java).also {
+                startActivity(it)
+            }
+        }
+
+
         _binding.btnLogIn.setOnClickListener {
             logIn()
         }
@@ -51,8 +58,6 @@ class LogInActivity : BaseActivity() {
     override fun onResume() {
 
         val pref  = this.getSharedPreferences(Constants.SAVED_USER_PREF, MODE_PRIVATE)
-
-        //showProgressDialog("Please Wait...")
 
         val username = pref.getString(Constants.LOGGED_IN_USERNAME, "")
         val password = pref.getString(Constants.LOGGED_IN_PASSWORD, "")
@@ -105,12 +110,12 @@ class LogInActivity : BaseActivity() {
                 hideProgressDialog()
                 val resp = it.networkResponse
                 if (resp == null) {
-                    showSnackBar("Check your Internet Connection!", true)
+                    //showSnackBar("Check your Internet Connection!", true)
                 } else {
                     val err = String(resp.data)
                     Log.d("Network Response", err)
-                    val respJO: JSONObject = JSONObject(err)
-                    showSnackBar(respJO.getString("message"), true)
+                    //val respJO: JSONObject = JSONObject(err)
+                    //showSnackBar(respJO.getString("message"), true)
                 }
             }
         ){

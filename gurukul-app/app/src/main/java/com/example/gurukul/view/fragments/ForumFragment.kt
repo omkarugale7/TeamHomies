@@ -91,6 +91,7 @@ class ForumFragment : BaseFragment() {
 
         val sr : StringRequest = object : StringRequest(Method.POST, url, {
             showSnackBar("Message sent successfully", false)
+            _binding!!.etMessage.setText("")
             //getMessages()
         },{
             showSnackBar("Message not sent", true)
@@ -162,12 +163,14 @@ class ForumFragment : BaseFragment() {
             if (flag) {
                 val adapter = MessageAdapter(messagesArr, activity)
 
-                _binding!!.rvMessages.adapter = adapter
+                if (_binding != null) {
+                    _binding!!.rvMessages.adapter = adapter
 
-                val layoutManager = LinearLayoutManager(context)
+                    val layoutManager = LinearLayoutManager(context)
 
-                layoutManager.scrollToPosition(messagesArr.size - 1)
-                _binding!!.rvMessages.layoutManager = layoutManager
+                    layoutManager.scrollToPosition(messagesArr.size - 1)
+                    _binding!!.rvMessages.layoutManager = layoutManager
+                }
             }
 
         },{
@@ -175,7 +178,7 @@ class ForumFragment : BaseFragment() {
         })
 
 
-        val q = Volley.newRequestQueue(context)
+        val q = Volley.newRequestQueue(requireContext())
 
         q.add(sr)
 

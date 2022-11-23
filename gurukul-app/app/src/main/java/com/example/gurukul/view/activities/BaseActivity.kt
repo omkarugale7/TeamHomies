@@ -14,6 +14,8 @@ open class BaseActivity : AppCompatActivity() {
 
     lateinit var mProgressDialog : Dialog
 
+    var isInitialized = false
+
     fun setSimpleSpinner(spinner: Spinner, itemsArray: ArrayList<String>){
         val adapter = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, itemsArray)
         spinner.adapter = adapter

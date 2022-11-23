@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_vector_school"
+            android:src="@drawable/ic_vector_person"
             android:contentDescription="@string/school_icon" />
 
         <EditText
@@ -53,7 +53,7 @@
             android:inputType="text"
             tools:text="2020BTECS00082"
             android:textSize="16sp"
-            android:hint="prn"
+            android:hint="username"
             android:textColorHint="@color/text_color_secondary"
             android:textColor="@color/text_color_primary"
             android:layout_gravity="center"
